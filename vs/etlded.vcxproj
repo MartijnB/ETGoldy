@@ -58,8 +58,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy libs-static\libcurl.dll $(SolutionDir)\..\build\bin\$(Configuration)\
-copy libs-static\SDL.dll $(SolutionDir)\..\build\bin\$(Configuration)\</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
