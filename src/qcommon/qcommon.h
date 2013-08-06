@@ -600,7 +600,7 @@ issues.
 */
 
 #define BASEGAME "etmain"
-#define DEFAULT_MODGAME "legacy" // see files.c
+#define DEFAULT_MODGAME "goldy" // see files.c
 
 // referenced flags
 // these are in loop specific order so don't change the order
