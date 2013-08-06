@@ -7,3 +7,7 @@
 *~
 /Makefile
 /*.make
+*.user
+*.opensdf
+*.sdf
+*.suo
