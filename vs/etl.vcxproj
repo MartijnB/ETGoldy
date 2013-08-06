@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B69CCFA6-2505-45E1-9D2E-C849EE588344}</ProjectGuid>
+    <RootNamespace>etl</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>..\libs\jpeg;..\libs\sdl\include;..\libs\curl\include;..\libs\vorbis\include;..\libs\ogg\include;..\libs\glew\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>..\libs\jpeg;..\libs\sdl\include;..\libs\curl\include;..\libs\vorbis\include;..\libs\ogg\include;..\libs\glew\include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;USE_ICON;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\build\$(Configuration)\libs\libcurl.lib;..\build\$(Configuration)\libs\libjpeg.lib;..\build\$(Configuration)\libs\glew.lib;..\build\$(Configuration)\libs\libogg.lib;..\build\$(Configuration)\libs\libvorbis.lib;..\build\$(Configuration)\libs\libvorbisfile.lib;..\libs\sdl-windows\lib\x86\SDL.lib;..\libs\sdl-windows\lib\x86\SDLmain.lib;glu32.lib;opengl32.lib;ws2_32.lib;winmm.lib;psapi.lib;wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y libs-static\libcurl.dll $(SolutionDir)\..\build\$(Configuration)\bin\
+copy /Y libs-static\SDL.dll $(SolutionDir)\..\build\$(Configuration)\bin\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;USE_ICON;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\build\$(Configuration)\libs\libcurl.lib;..\build\$(Configuration)\libs\libjpeg.lib;..\build\$(Configuration)\libs\glew.lib;..\build\$(Configuration)\libs\libogg.lib;..\build\$(Configuration)\libs\libvorbis.lib;..\build\$(Configuration)\libs\libvorbisfile.lib;..\libs\sdl-windows\lib\x86\SDL.lib;..\libs\sdl-windows\lib\x86\SDLmain.lib;glu32.lib;opengl32.lib;ws2_32.lib;winmm.lib;psapi.lib;wldap32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy libs-static\libcurl.dll $(SolutionDir)\..\build\$(Configuration)\bin\
+copy libs-static\SDL.dll $(SolutionDir)\..\build\$(Configuration)\bin\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libs\tinygettext\dictionary.cpp" />
+    <ClCompile Include="..\libs\tinygettext\dictionary_manager.cpp" />
+    <ClCompile Include="..\libs\tinygettext\iconv.cpp" />
+    <ClCompile Include="..\libs\tinygettext\language.cpp" />
+    <ClCompile Include="..\libs\tinygettext\log.cpp" />
+    <ClCompile Include="..\libs\tinygettext\plural_forms.cpp" />
+    <ClCompile Include="..\libs\tinygettext\po_parser.cpp" />
+    <ClCompile Include="..\libs\tinygettext\tinygettext.cpp" />
+    <ClCompile Include="..\src\botlib\be_interface.c" />
+    <ClCompile Include="..\src\botlib\l_libvar.c" />
+    <ClCompile Include="..\src\botlib\l_log.c" />
+    <ClCompile Include="..\src\botlib\l_memory.c" />
+    <ClCompile Include="..\src\botlib\l_precomp.c" />
+    <ClCompile Include="..\src\botlib\l_script.c" />
+    <ClCompile Include="..\src\botlib\l_struct.c" />
+    <ClCompile Include="..\src\client\cl_avi.c" />
+    <ClCompile Include="..\src\client\cl_cgame.c" />
+    <ClCompile Include="..\src\client\cl_cin.c" />
+    <ClCompile Include="..\src\client\cl_console.c" />
+    <ClCompile Include="..\src\client\cl_input.c" />
+    <ClCompile Include="..\src\client\cl_irc.c" />
+    <ClCompile Include="..\src\client\cl_keys.c" />
+    <ClCompile Include="..\src\client\cl_main.c" />
+    <ClCompile Include="..\src\client\cl_net_chan.c" />
+    <ClCompile Include="..\src\client\cl_parse.c" />
+    <ClCompile Include="..\src\client\cl_scrn.c" />
+    <ClCompile Include="..\src\client\cl_ui.c" />
+    <ClCompile Include="..\src\client\qal.c" />
+    <ClCompile Include="..\src\client\snd_adpcm.c" />
+    <ClCompile Include="..\src\client\snd_codec.c" />
+    <ClCompile Include="..\src\client\snd_codec_ogg.c" />
+    <ClCompile Include="..\src\client\snd_codec_wav.c" />
+    <ClCompile Include="..\src\client\snd_dma.c" />
+    <ClCompile Include="..\src\client\snd_main.c" />
+    <ClCompile Include="..\src\client\snd_mem.c" />
+    <ClCompile Include="..\src\client\snd_mix.c" />
+    <ClCompile Include="..\src\client\snd_openal.c" />
+    <ClCompile Include="..\src\client\snd_wavelet.c" />
+    <ClCompile Include="..\src\qcommon\cmd.c" />
+    <ClCompile Include="..\src\qcommon\cm_load.c" />
+    <ClCompile Include="..\src\qcommon\cm_patch.c" />
+    <ClCompile Include="..\src\qcommon\cm_polylib.c" />
+    <ClCompile Include="..\src\qcommon\cm_test.c" />
+    <ClCompile Include="..\src\qcommon\cm_trace.c" />
+    <ClCompile Include="..\src\qcommon\common.c" />
+    <ClCompile Include="..\src\qcommon\cvar.c" />
+    <ClCompile Include="..\src\qcommon\dl_main_curl.c" />
+    <ClCompile Include="..\src\qcommon\files.c" />
+    <ClCompile Include="..\src\qcommon\htable.c" />
+    <ClCompile Include="..\src\qcommon\huffman.c" />
+    <ClCompile Include="..\src\qcommon\i18n_findlocale.c" />
+    <ClCompile Include="..\src\qcommon\i18n_main.cpp" />
+    <ClCompile Include="..\src\qcommon\ioapi.c" />
+    <ClCompile Include="..\src\qcommon\md4.c" />
+    <ClCompile Include="..\src\qcommon\md5.c" />
+    <ClCompile Include="..\src\qcommon\msg.c" />
+    <ClCompile Include="..\src\qcommon\net_chan.c" />
+    <ClCompile Include="..\src\qcommon\net_ip.c" />
+    <ClCompile Include="..\src\qcommon\puff.c" />
+    <ClCompile Include="..\src\qcommon\q_math.c" />
+    <ClCompile Include="..\src\qcommon\q_shared.c" />
+    <ClCompile Include="..\src\qcommon\unzip.c" />
+    <ClCompile Include="..\src\qcommon\vm.c" />
+    <ClCompile Include="..\src\qcommon\vm_interpreted.c" />
+    <ClCompile Include="..\src\renderercommon\tr_font.c" />
+    <ClCompile Include="..\src\renderercommon\tr_image_bmp.c" />
+    <ClCompile Include="..\src\renderercommon\tr_image_jpg.c" />
+    <ClCompile Include="..\src\renderercommon\tr_image_pcx.c" />
+    <ClCompile Include="..\src\renderercommon\tr_image_png.c" />
+    <ClCompile Include="..\src\renderercommon\tr_image_tga.c" />
+    <ClCompile Include="..\src\renderer\tr_animation_mdm.c" />
+    <ClCompile Include="..\src\renderer\tr_animation_mds.c" />
+    <ClCompile Include="..\src\renderer\tr_backend.c" />
+    <ClCompile Include="..\src\renderer\tr_bsp.c" />
+    <ClCompile Include="..\src\renderer\tr_cmds.c" />
+    <ClCompile Include="..\src\renderer\tr_cmesh.c" />
+    <ClCompile Include="..\src\renderer\tr_curve.c" />
+    <ClCompile Include="..\src\renderer\tr_decals.c" />
+    <ClCompile Include="..\src\renderer\tr_flares.c" />
+    <ClCompile Include="..\src\renderer\tr_image.c" />
+    <ClCompile Include="..\src\renderer\tr_init.c" />
+    <ClCompile Include="..\src\renderer\tr_light.c" />
+    <ClCompile Include="..\src\renderer\tr_main.c" />
+    <ClCompile Include="..\src\renderer\tr_marks.c" />
+    <ClCompile Include="..\src\renderer\tr_mesh.c" />
+    <ClCompile Include="..\src\renderer\tr_model.c" />
+    <ClCompile Include="..\src\renderer\tr_noise.c" />
+    <ClCompile Include="..\src\renderer\tr_scene.c" />
+    <ClCompile Include="..\src\renderer\tr_shade.c" />
+    <ClCompile Include="..\src\renderer\tr_shader.c" />
+    <ClCompile Include="..\src\renderer\tr_shade_calc.c" />
+    <ClCompile Include="..\src\renderer\tr_shadows.c" />
+    <ClCompile Include="..\src\renderer\tr_sky.c" />
+    <ClCompile Include="..\src\renderer\tr_surface.c" />
+    <ClCompile Include="..\src\renderer\tr_world.c" />
+    <ClCompile Include="..\src\sdl\sdl_gamma.c" />
+    <ClCompile Include="..\src\sdl\sdl_glimp.c" />
+    <ClCompile Include="..\src\sdl\sdl_input.c" />
+    <ClCompile Include="..\src\sdl\sdl_snd.c" />
+    <ClCompile Include="..\src\server\sv_bot.c" />
+    <ClCompile Include="..\src\server\sv_ccmds.c" />
+    <ClCompile Include="..\src\server\sv_client.c" />
+    <ClCompile Include="..\src\server\sv_demo.c" />
+    <ClCompile Include="..\src\server\sv_game.c" />
+    <ClCompile Include="..\src\server\sv_init.c" />
+    <ClCompile Include="..\src\server\sv_main.c" />
+    <ClCompile Include="..\src\server\sv_net_chan.c" />
+    <ClCompile Include="..\src\server\sv_snapshot.c" />
+    <ClCompile Include="..\src\server\sv_tracker.c" />
+    <ClCompile Include="..\src\server\sv_wallhack.c" />
+    <ClCompile Include="..\src\server\sv_world.c" />
+    <ClCompile Include="..\src\sys\con_log.c" />
+    <ClCompile Include="..\src\sys\con_win32.c" />
+    <ClCompile Include="..\src\sys\sys_main.c" />
+    <ClCompile Include="..\src\sys\sys_win32.c" />
+    <ClCompile Include="..\src\sys\sys_win32_con.c" />
+    <ClCompile Include="..\src\zlib\adler32.c" />
+    <ClCompile Include="..\src\zlib\crc32.c" />
+    <ClCompile Include="..\src\zlib\inffast.c" />
+    <ClCompile Include="..\src\zlib\inflate.c" />
+    <ClCompile Include="..\src\zlib\inftrees.c" />
+    <ClCompile Include="..\src\zlib\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libs\tinygettext\dictionary.hpp" />
+    <ClInclude Include="..\libs\tinygettext\dictionary_manager.hpp" />
+    <ClInclude Include="..\libs\tinygettext\file_system.hpp" />
+    <ClInclude Include="..\libs\tinygettext\iconv.hpp" />
+    <ClInclude Include="..\libs\tinygettext\language.hpp" />
+    <ClInclude Include="..\libs\tinygettext\log.hpp" />
+    <ClInclude Include="..\libs\tinygettext\log_stream.hpp" />
+    <ClInclude Include="..\libs\tinygettext\plural_forms.hpp" />
+    <ClInclude Include="..\libs\tinygettext\po_parser.hpp" />
+    <ClInclude Include="..\libs\tinygettext\tinygettext.hpp" />
+    <ClInclude Include="..\src\botlib\be_interface.h" />
+    <ClInclude Include="..\src\botlib\l_libvar.h" />
+    <ClInclude Include="..\src\botlib\l_log.h" />
+    <ClInclude Include="..\src\botlib\l_memory.h" />
+    <ClInclude Include="..\src\botlib\l_precomp.h" />
+    <ClInclude Include="..\src\botlib\l_script.h" />
+    <ClInclude Include="..\src\botlib\l_struct.h" />
+    <ClInclude Include="..\src\client\client.h" />
+    <ClInclude Include="..\src\client\keys.h" />
+    <ClInclude Include="..\src\client\qal.h" />
+    <ClInclude Include="..\src\client\snd_codec.h" />
+    <ClInclude Include="..\src\client\snd_local.h" />
+    <ClInclude Include="..\src\client\snd_public.h" />
+    <ClInclude Include="..\src\qcommon\cm_local.h" />
+    <ClInclude Include="..\src\qcommon\cm_patch.h" />
+    <ClInclude Include="..\src\qcommon\cm_polylib.h" />
+    <ClInclude Include="..\src\qcommon\cm_public.h" />
+    <ClInclude Include="..\src\qcommon\dl_local.h" />
+    <ClInclude Include="..\src\qcommon\dl_public.h" />
+    <ClInclude Include="..\src\qcommon\htable.h" />
+    <ClInclude Include="..\src\qcommon\i18n_findlocale.h" />
+    <ClInclude Include="..\src\qcommon\ioapi.h" />
+    <ClInclude Include="..\src\qcommon\puff.h" />
+    <ClInclude Include="..\src\qcommon\qcommon.h" />
+    <ClInclude Include="..\src\qcommon\qfiles.h" />
+    <ClInclude Include="..\src\qcommon\q_platform.h" />
+    <ClInclude Include="..\src\qcommon\q_shared.h" />
+    <ClInclude Include="..\src\qcommon\unzip.h" />
+    <ClInclude Include="..\src\qcommon\vm_local.h" />
+    <ClInclude Include="..\src\renderercommon\iqm.h" />
+    <ClInclude Include="..\src\renderercommon\qgl.h" />
+    <ClInclude Include="..\src\renderercommon\tr_common.h" />
+    <ClInclude Include="..\src\renderercommon\tr_public.h" />
+    <ClInclude Include="..\src\renderercommon\tr_types.h" />
+    <ClInclude Include="..\src\renderer\anorms256.h" />
+    <ClInclude Include="..\src\renderer\tr_local.h" />
+    <ClInclude Include="..\src\sdl\sdl_icon.h" />
+    <ClInclude Include="..\src\server\server.h" />
+    <ClInclude Include="..\src\server\sv_tracker.h" />
+    <ClInclude Include="..\src\sys\sys_local.h" />
+    <ClInclude Include="..\src\zlib\crc32.h" />
+    <ClInclude Include="..\src\zlib\inffast.h" />
+    <ClInclude Include="..\src\zlib\inffixed.h" />
+    <ClInclude Include="..\src\zlib\inflate.h" />
+    <ClInclude Include="..\src\zlib\inftrees.h" />
+    <ClInclude Include="..\src\zlib\zconf.h" />
+    <ClInclude Include="..\src\zlib\zlib.h" />
+    <ClInclude Include="..\src\zlib\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\sys\win_resource.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

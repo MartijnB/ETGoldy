@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AE526E1B-1CDD-43C6-B57D-CE79F7133469}</ProjectGuid>
+    <RootNamespace>etlded</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;DEDICATED;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;winmm.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy libs-static\libcurl.dll $(SolutionDir)\..\build\bin\$(Configuration)\
+copy libs-static\SDL.dll $(SolutionDir)\..\build\bin\$(Configuration)\</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEDICATED;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;winmm.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\botlib\be_interface.c" />
+    <ClCompile Include="..\src\botlib\l_libvar.c" />
+    <ClCompile Include="..\src\botlib\l_log.c" />
+    <ClCompile Include="..\src\botlib\l_memory.c" />
+    <ClCompile Include="..\src\botlib\l_precomp.c" />
+    <ClCompile Include="..\src\botlib\l_script.c" />
+    <ClCompile Include="..\src\botlib\l_struct.c" />
+    <ClCompile Include="..\src\null\null_client.c" />
+    <ClCompile Include="..\src\null\null_input.c" />
+    <ClCompile Include="..\src\null\null_snddma.c" />
+    <ClCompile Include="..\src\qcommon\cmd.c" />
+    <ClCompile Include="..\src\qcommon\cm_load.c" />
+    <ClCompile Include="..\src\qcommon\cm_patch.c" />
+    <ClCompile Include="..\src\qcommon\cm_polylib.c" />
+    <ClCompile Include="..\src\qcommon\cm_test.c" />
+    <ClCompile Include="..\src\qcommon\cm_trace.c" />
+    <ClCompile Include="..\src\qcommon\common.c" />
+    <ClCompile Include="..\src\qcommon\cvar.c" />
+    <ClCompile Include="..\src\qcommon\dl_main_stubs.c" />
+    <ClCompile Include="..\src\qcommon\files.c" />
+    <ClCompile Include="..\src\qcommon\htable.c" />
+    <ClCompile Include="..\src\qcommon\huffman.c" />
+    <ClCompile Include="..\src\qcommon\ioapi.c" />
+    <ClCompile Include="..\src\qcommon\md4.c" />
+    <ClCompile Include="..\src\qcommon\md5.c" />
+    <ClCompile Include="..\src\qcommon\msg.c" />
+    <ClCompile Include="..\src\qcommon\net_chan.c" />
+    <ClCompile Include="..\src\qcommon\net_ip.c" />
+    <ClCompile Include="..\src\qcommon\puff.c" />
+    <ClCompile Include="..\src\qcommon\q_math.c" />
+    <ClCompile Include="..\src\qcommon\q_shared.c" />
+    <ClCompile Include="..\src\qcommon\unzip.c" />
+    <ClCompile Include="..\src\qcommon\vm.c" />
+    <ClCompile Include="..\src\qcommon\vm_interpreted.c" />
+    <ClCompile Include="..\src\server\sv_bot.c" />
+    <ClCompile Include="..\src\server\sv_ccmds.c" />
+    <ClCompile Include="..\src\server\sv_client.c" />
+    <ClCompile Include="..\src\server\sv_demo.c" />
+    <ClCompile Include="..\src\server\sv_game.c" />
+    <ClCompile Include="..\src\server\sv_init.c" />
+    <ClCompile Include="..\src\server\sv_main.c" />
+    <ClCompile Include="..\src\server\sv_net_chan.c" />
+    <ClCompile Include="..\src\server\sv_snapshot.c" />
+    <ClCompile Include="..\src\server\sv_tracker.c" />
+    <ClCompile Include="..\src\server\sv_wallhack.c" />
+    <ClCompile Include="..\src\server\sv_world.c" />
+    <ClCompile Include="..\src\sys\con_log.c" />
+    <ClCompile Include="..\src\sys\con_win32.c" />
+    <ClCompile Include="..\src\sys\sys_main.c" />
+    <ClCompile Include="..\src\sys\sys_win32.c" />
+    <ClCompile Include="..\src\sys\sys_win32_con.c" />
+    <ClCompile Include="..\src\zlib\adler32.c" />
+    <ClCompile Include="..\src\zlib\crc32.c" />
+    <ClCompile Include="..\src\zlib\inffast.c" />
+    <ClCompile Include="..\src\zlib\inflate.c" />
+    <ClCompile Include="..\src\zlib\inftrees.c" />
+    <ClCompile Include="..\src\zlib\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\botlib\be_interface.h" />
+    <ClInclude Include="..\src\botlib\l_libvar.h" />
+    <ClInclude Include="..\src\botlib\l_log.h" />
+    <ClInclude Include="..\src\botlib\l_memory.h" />
+    <ClInclude Include="..\src\botlib\l_precomp.h" />
+    <ClInclude Include="..\src\botlib\l_script.h" />
+    <ClInclude Include="..\src\botlib\l_struct.h" />
+    <ClInclude Include="..\src\qcommon\cm_local.h" />
+    <ClInclude Include="..\src\qcommon\cm_patch.h" />
+    <ClInclude Include="..\src\qcommon\cm_polylib.h" />
+    <ClInclude Include="..\src\qcommon\cm_public.h" />
+    <ClInclude Include="..\src\qcommon\dl_local.h" />
+    <ClInclude Include="..\src\qcommon\dl_public.h" />
+    <ClInclude Include="..\src\qcommon\htable.h" />
+    <ClInclude Include="..\src\qcommon\ioapi.h" />
+    <ClInclude Include="..\src\qcommon\puff.h" />
+    <ClInclude Include="..\src\qcommon\qcommon.h" />
+    <ClInclude Include="..\src\qcommon\qfiles.h" />
+    <ClInclude Include="..\src\qcommon\q_platform.h" />
+    <ClInclude Include="..\src\qcommon\q_shared.h" />
+    <ClInclude Include="..\src\qcommon\unzip.h" />
+    <ClInclude Include="..\src\qcommon\vm_local.h" />
+    <ClInclude Include="..\src\server\server.h" />
+    <ClInclude Include="..\src\server\sv_tracker.h" />
+    <ClInclude Include="..\src\zlib\crc32.h" />
+    <ClInclude Include="..\src\zlib\inffast.h" />
+    <ClInclude Include="..\src\zlib\inffixed.h" />
+    <ClInclude Include="..\src\zlib\inflate.h" />
+    <ClInclude Include="..\src\zlib\inftrees.h" />
+    <ClInclude Include="..\src\zlib\zconf.h" />
+    <ClInclude Include="..\src\zlib\zlib.h" />
+    <ClInclude Include="..\src\zlib\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\sys\win_resource.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

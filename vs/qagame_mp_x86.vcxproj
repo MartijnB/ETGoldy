@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{492169C6-5925-46FD-8E13-B33694AE218F}</ProjectGuid>
+    <RootNamespace>game</RootNamespace>
+    <ProjectName>qagame_x86</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\goldy\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>..\libs\lua\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\goldy\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>..\libs\lua\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GAMEDLL;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Debug";cgame_mp_x86_64_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\libs\lua-windows\lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GAMEDLL;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Release";cgame_mp_x86_64_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\libs\lua-windows\lua51.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\game\bg_animation.c" />
+    <ClCompile Include="..\src\game\bg_animgroup.c" />
+    <ClCompile Include="..\src\game\bg_campaign.c" />
+    <ClCompile Include="..\src\game\bg_character.c" />
+    <ClCompile Include="..\src\game\bg_classes.c" />
+    <ClCompile Include="..\src\game\bg_misc.c" />
+    <ClCompile Include="..\src\game\bg_pmove.c" />
+    <ClCompile Include="..\src\game\bg_slidemove.c" />
+    <ClCompile Include="..\src\game\bg_sscript.c" />
+    <ClCompile Include="..\src\game\bg_stats.c" />
+    <ClCompile Include="..\src\game\bg_tracemap.c" />
+    <ClCompile Include="..\src\game\et-antiwarp.c" />
+    <ClCompile Include="..\src\game\geoip.c" />
+    <ClCompile Include="..\src\game\g_active.c" />
+    <ClCompile Include="..\src\game\g_alarm.c" />
+    <ClCompile Include="..\src\game\g_antilag.c" />
+    <ClCompile Include="..\src\game\g_buddy_list.c" />
+    <ClCompile Include="..\src\game\g_character.c" />
+    <ClCompile Include="..\src\game\g_client.c" />
+    <ClCompile Include="..\src\game\g_cmds.c" />
+    <ClCompile Include="..\src\game\g_cmds_ext.c" />
+    <ClCompile Include="..\src\game\g_combat.c" />
+    <ClCompile Include="..\src\game\g_config.c" />
+    <ClCompile Include="..\src\game\g_etbot_interface.cpp" />
+    <ClCompile Include="..\src\game\g_fireteams.c" />
+    <ClCompile Include="..\src\game\g_items.c" />
+    <ClCompile Include="..\src\game\g_lua.c" />
+    <ClCompile Include="..\src\game\g_main.c" />
+    <ClCompile Include="..\src\game\g_match.c" />
+    <ClCompile Include="..\src\game\g_match_tokens.c" />
+    <ClCompile Include="..\src\game\g_mem.c" />
+    <ClCompile Include="..\src\game\g_misc.c" />
+    <ClCompile Include="..\src\game\g_missile.c" />
+    <ClCompile Include="..\src\game\g_mover.c" />
+    <ClCompile Include="..\src\game\g_multiview.c" />
+    <ClCompile Include="..\src\game\g_props.c" />
+    <ClCompile Include="..\src\game\g_referee.c" />
+    <ClCompile Include="..\src\game\g_script.c" />
+    <ClCompile Include="..\src\game\g_script_actions.c" />
+    <ClCompile Include="..\src\game\g_session.c" />
+    <ClCompile Include="..\src\game\g_sha1.c" />
+    <ClCompile Include="..\src\game\g_spawn.c" />
+    <ClCompile Include="..\src\game\g_stats.c" />
+    <ClCompile Include="..\src\game\g_strparse.c" />
+    <ClCompile Include="..\src\game\g_svcmds.c" />
+    <ClCompile Include="..\src\game\g_syscalls.c" />
+    <ClCompile Include="..\src\game\g_systemmsg.c" />
+    <ClCompile Include="..\src\game\g_target.c" />
+    <ClCompile Include="..\src\game\g_team.c" />
+    <ClCompile Include="..\src\game\g_teammapdata.c" />
+    <ClCompile Include="..\src\game\g_trigger.c" />
+    <ClCompile Include="..\src\game\g_utils.c" />
+    <ClCompile Include="..\src\game\g_vote.c" />
+    <ClCompile Include="..\src\game\g_weapon.c" />
+    <ClCompile Include="..\src\game\sha-1\sha.c" />
+    <ClCompile Include="..\src\game\sha-1\sha1.c" />
+    <ClCompile Include="..\src\qcommon\q_math.c" />
+    <ClCompile Include="..\src\qcommon\q_shared.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\game\bg_local.h" />
+    <ClInclude Include="..\src\game\bg_public.h" />
+    <ClInclude Include="..\src\game\g_etbot_interface.h" />
+    <ClInclude Include="..\src\game\g_local.h" />
+    <ClInclude Include="..\src\game\g_lua.h" />
+    <ClInclude Include="..\src\game\g_public.h" />
+    <ClInclude Include="..\src\game\g_strparse.h" />
+    <ClInclude Include="..\src\game\g_team.h" />
+    <ClInclude Include="..\src\game\sha-1\sha1.h" />
+    <ClInclude Include="..\src\game\surfaceflags.h" />
+    <ClInclude Include="..\src\qcommon\q_shared.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\game\input_tokens.gperf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\src\game\sha-1\license.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

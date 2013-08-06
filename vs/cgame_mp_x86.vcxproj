@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1898AB48-8BAC-41D8-8C9E-AB1B4F5DE1B1}</ProjectGuid>
+    <RootNamespace>cgame</RootNamespace>
+    <ProjectName>cgame_x86</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\goldy\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\build\$(Configuration)\bin\goldy\</OutDir>
+    <IntDir>..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;CGAMEDLL;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Debug";cgame_mp_x86_64_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CGAMEDLL;WINVER=0x501;_CRT_SECURE_NO_WARNINGS;BUNDLED_GLEW;GLEW_STATIC;BUNDLED_SDL;CURL_STATICLIB;FEATURE_GETTEXT;FEATURE_AUTOUPDATE;FEATURE_OGG_VORBIS;BUNDLED_LUA;FEATURE_LUA;FEATURE_TRACKER;FEATURE_ANTICHEAT;CMAKE_INTDIR="Release";cgame_mp_x86_64_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cgame\cg_atmospheric.c" />
+    <ClCompile Include="..\src\cgame\cg_character.c" />
+    <ClCompile Include="..\src\cgame\cg_commandmap.c" />
+    <ClCompile Include="..\src\cgame\cg_consolecmds.c" />
+    <ClCompile Include="..\src\cgame\cg_debriefing.c" />
+    <ClCompile Include="..\src\cgame\cg_draw.c" />
+    <ClCompile Include="..\src\cgame\cg_drawtools.c" />
+    <ClCompile Include="..\src\cgame\cg_draw_hud.c" />
+    <ClCompile Include="..\src\cgame\cg_effects.c" />
+    <ClCompile Include="..\src\cgame\cg_ents.c" />
+    <ClCompile Include="..\src\cgame\cg_event.c" />
+    <ClCompile Include="..\src\cgame\cg_fireteamoverlay.c" />
+    <ClCompile Include="..\src\cgame\cg_fireteams.c" />
+    <ClCompile Include="..\src\cgame\cg_flamethrower.c" />
+    <ClCompile Include="..\src\cgame\cg_info.c" />
+    <ClCompile Include="..\src\cgame\cg_limbopanel.c" />
+    <ClCompile Include="..\src\cgame\cg_loadpanel.c" />
+    <ClCompile Include="..\src\cgame\cg_localents.c" />
+    <ClCompile Include="..\src\cgame\cg_main.c" />
+    <ClCompile Include="..\src\cgame\cg_marks.c" />
+    <ClCompile Include="..\src\cgame\cg_missionbriefing.c" />
+    <ClCompile Include="..\src\cgame\cg_multiview.c" />
+    <ClCompile Include="..\src\cgame\cg_newDraw.c" />
+    <ClCompile Include="..\src\cgame\cg_particles.c" />
+    <ClCompile Include="..\src\cgame\cg_players.c" />
+    <ClCompile Include="..\src\cgame\cg_playerstate.c" />
+    <ClCompile Include="..\src\cgame\cg_polybus.c" />
+    <ClCompile Include="..\src\cgame\cg_popupmessages.c" />
+    <ClCompile Include="..\src\cgame\cg_predict.c" />
+    <ClCompile Include="..\src\cgame\cg_scoreboard.c" />
+    <ClCompile Include="..\src\cgame\cg_servercmds.c" />
+    <ClCompile Include="..\src\cgame\cg_snapshot.c" />
+    <ClCompile Include="..\src\cgame\cg_sound.c" />
+    <ClCompile Include="..\src\cgame\cg_spawn.c" />
+    <ClCompile Include="..\src\cgame\cg_statsranksmedals.c" />
+    <ClCompile Include="..\src\cgame\cg_syscalls.c" />
+    <ClCompile Include="..\src\cgame\cg_trails.c" />
+    <ClCompile Include="..\src\cgame\cg_view.c" />
+    <ClCompile Include="..\src\cgame\cg_weapons.c" />
+    <ClCompile Include="..\src\cgame\cg_window.c" />
+    <ClCompile Include="..\src\game\bg_animation.c" />
+    <ClCompile Include="..\src\game\bg_animgroup.c" />
+    <ClCompile Include="..\src\game\bg_campaign.c" />
+    <ClCompile Include="..\src\game\bg_character.c" />
+    <ClCompile Include="..\src\game\bg_classes.c" />
+    <ClCompile Include="..\src\game\bg_misc.c" />
+    <ClCompile Include="..\src\game\bg_pmove.c" />
+    <ClCompile Include="..\src\game\bg_slidemove.c" />
+    <ClCompile Include="..\src\game\bg_sscript.c" />
+    <ClCompile Include="..\src\game\bg_stats.c" />
+    <ClCompile Include="..\src\game\bg_tracemap.c" />
+    <ClCompile Include="..\src\qcommon\q_math.c" />
+    <ClCompile Include="..\src\qcommon\q_shared.c" />
+    <ClCompile Include="..\src\ui\ui_shared.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\cgame\cg_local.h" />
+    <ClInclude Include="..\src\cgame\cg_public.h" />
+    <ClInclude Include="..\src\game\bg_local.h" />
+    <ClInclude Include="..\src\game\bg_public.h" />
+    <ClInclude Include="..\src\qcommon\q_shared.h" />
+    <ClInclude Include="..\src\ui\ui_shared.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
