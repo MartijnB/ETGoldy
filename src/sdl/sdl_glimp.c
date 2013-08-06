@@ -1411,6 +1411,14 @@ static qboolean GLimp_StartDriverAndSetMode(int mode, qboolean fullscreen, qbool
 {
 	rserr_t err;
 
+	// this requires SDL >= 1.2.14. and fixes CAPSLOCK binding
+	// may cause compatibility issues on Sun workstations
+#ifdef WIN32
+	_putenv_s("SDL_DISABLE_LOCK_KEYS", "1");
+#else
+	setenv("SDL_DISABLE_LOCK_KEYS", "1", 1);
+#endif // WIN32
+
 	if (!SDL_WasInit(SDL_INIT_VIDEO))
 	{
 		char driverName[64];
@@ -1824,7 +1832,7 @@ void GLimp_EndFrame(void)
 			// SDL_WM_ToggleFullScreen didn't work, so do it the slow way
 			if (!sdlToggled)
 			{
-				ri.Cmd_ExecuteText(EXEC_APPEND, "vid_restart");
+				ri.Cmd_ExecuteText(EXEC_APPEND, "vid_restart\n");
 				ri.IN_Restart();
 			}
 		}
