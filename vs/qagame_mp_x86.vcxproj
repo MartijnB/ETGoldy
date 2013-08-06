@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{492169C6-5925-46FD-8E13-B33694AE218F}</ProjectGuid>
     <RootNamespace>game</RootNamespace>
-    <ProjectName>qagame_x86</ProjectName>
+    <ProjectName>qagame_mp_x86</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

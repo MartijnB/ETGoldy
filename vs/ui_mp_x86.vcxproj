@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0A916EE3-D460-4C9B-AB1B-B665A2408F83}</ProjectGuid>
     <RootNamespace>ui</RootNamespace>
-    <ProjectName>ui_x86</ProjectName>
+    <ProjectName>ui_mp_x86</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

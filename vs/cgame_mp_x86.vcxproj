@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1898AB48-8BAC-41D8-8C9E-AB1B4F5DE1B1}</ProjectGuid>
     <RootNamespace>cgame</RootNamespace>
-    <ProjectName>cgame_x86</ProjectName>
+    <ProjectName>cgame_mp_x86</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
