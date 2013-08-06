@@ -10,7 +10,7 @@ Repository: [https://github.com/MartijnB/ETGoldy](https://github.com/MartijnB/ET
 INTRODUCTION
 ============
 
-ET: Goldy is based on the ET: Legacy project which in turn is based on the [raedwulf-et project](https://bitbucket.org/tcmreastwood/raedwulf-et/) 
+ET: Goldy is based on the [ET: Legacy project](https://github.com/etlegacy/etlegacy) which in turn is based on the [raedwulf-et project](https://bitbucket.org/tcmreastwood/raedwulf-et/) 
 which in turn is based on the GPL'd source code of Wolfenstein: Enemy Territory. 
 
 ET: Goldy is a standlone mod based on the Goldy mode of Banimod for RTCW.
@@ -58,7 +58,7 @@ Dependencies
 To get the latest source code install [git](http://git-scm.com/) and
 clone our repository hosted at Github.com:
 
-    $ git clone git://github.com/etlegacy/etlegacy.git
+    $ git clone git://github.com/MartijnB/ETGoldy.git
 
 If the required dependencies are not installed on your system run:
 
