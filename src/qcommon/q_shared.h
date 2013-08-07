@@ -65,7 +65,7 @@ extern "C" {
 //--------------------------------------
 
 #define PRODUCT_NAME            "etlegacy"
-#define PRODUCT_LABEL           "ET Legacy"
+#define PRODUCT_LABEL           "ET: Goldy"
 #define CLIENT_WINDOW_TITLE     PRODUCT_LABEL
 #define CLIENT_WINDOW_MIN_TITLE PRODUCT_LABEL
 #define GAMENAME_FOR_MASTER     PRODUCT_NAME

@@ -701,11 +701,11 @@ void Sys_CreateConsole(void)
 	WNDCLASS wc;
 	RECT     rect;
 
-	const char *DEDCLASS = "ET:Goldy WinConsole";
+	const char *DEDCLASS = PRODUCT_LABEL " WinConsole";
 #if defined (UPDATE_SERVER)
-	const char *WINDOWNAME = "ET:Goldy Update Server";
+	const char *WINDOWNAME = PRODUCT_LABEL " Update Server";
 #else
-	const char *WINDOWNAME = "ET:Goldy Console";
+	const char *WINDOWNAME = PRODUCT_LABEL " Console";
 #endif
 
 	int nHeight;
