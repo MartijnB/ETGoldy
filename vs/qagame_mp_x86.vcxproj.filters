@@ -16,6 +16,9 @@
     <Filter Include="Source Files\sha-1">
       <UniqueIdentifier>{803024eb-69ea-4bef-84e3-4362c7bdd3b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LUA">
+      <UniqueIdentifier>{bf523ba1-6b6b-49e9-93ff-2417a9cc8f5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\game\bg_animation.c">
@@ -230,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
+    <None Include="etgoldy.lua">
+      <Filter>LUA</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\src\game\sha-1\license.txt">

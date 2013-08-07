@@ -150,6 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
+    <None Include="etgoldy.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="etgoldy.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\src\game\sha-1\license.txt" />

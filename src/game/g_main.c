@@ -510,7 +510,7 @@ cvarTable_t gameCvarTable[] =
 	{ &g_maxWarp,                  "g_maxWarp",                  "4",                          0 },
 	{ &g_antiwarp,                 "g_antiwarp",                 "1",                          0 },
 #ifdef FEATURE_LUA
-	{ &lua_modules,                "lua_modules",                "",                           0 },
+	{ &lua_modules,                "lua_modules",                "etgoldy.lua",                0 },
 	{ &lua_allowedModules,         "lua_allowedModules",         "",                           0 },
 #endif
 
