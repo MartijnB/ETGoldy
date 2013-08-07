@@ -3581,9 +3581,9 @@ qboolean Bullet_Fire_Extended(gentity_t *source, gentity_t *attacker, vec3_t sta
 	}
 	tent->s.otherEntityNum = attacker->s.number;
 
-	if (traceEnt->takedamage || traceEnt->methodOfDeath == MOD_DYNAMITE)
+	if (traceEnt->takedamage || (traceEnt->methodOfDeath == MOD_DYNAMITE && g_dynamiteShootable.integer == 1))
 	{
-		if (traceEnt->methodOfDeath == MOD_DYNAMITE)
+		if (traceEnt->methodOfDeath == MOD_DYNAMITE && g_dynamiteShootable.integer == 1)
 		{
 			traceEnt->nextthink = level.time + 100;
 			traceEnt->think = G_ExplodeMissile;
