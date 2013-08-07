@@ -748,7 +748,7 @@ static int WM_TeamScoreboard(int x, int y, team_t team, float fade, int maxrows,
 	CG_DrawSmallString(tempx, y, CG_TranslateString("Class"), fade);
 	tempx += INFO_CLASS_WIDTH;
 
-	if (cgs.gametype == GT_WOLF_LMS)
+	if (cgs.gametype == GT_WOLF_LMS || cgs.gametype == GT_WOLF_GOLDY)
 	{
 		CG_DrawSmallString(tempx, y, CG_TranslateString("Score"), fade);
 		tempx += INFO_SCORE_WIDTH;

@@ -60,8 +60,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy libs-static\libcurl.dll $(SolutionDir)\..\build\$(Configuration)\bin\
-copy libs-static\SDL.dll $(SolutionDir)\..\build\$(Configuration)\bin\</Command>
+      <Command>copy "libs-static\libcurl.dll" "$(SolutionDir)\..\build\$(Configuration)\bin\"
+copy "libs-static\SDL.dll" "$(SolutionDir)\..\build\$(Configuration)\bin\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,8 +80,8 @@ copy libs-static\SDL.dll $(SolutionDir)\..\build\$(Configuration)\bin\</Command>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy libs-static\libcurl.dll $(SolutionDir)\..\build\$(Configuration)\bin\
-copy libs-static\SDL.dll $(SolutionDir)\..\build\$(Configuration)\bin\</Command>
+      <Command>copy "libs-static\libcurl.dll" "$(SolutionDir)\..\build\$(Configuration)\bin\"
+copy "libs-static\SDL.dll" "$(SolutionDir)\..\build\$(Configuration)\bin\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

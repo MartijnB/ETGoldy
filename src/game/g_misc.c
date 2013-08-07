@@ -1660,6 +1660,11 @@ void mg42_spawn(gentity_t *ent)
 	gentity_t *base, *gun;
 	vec3_t    offset;
 
+	if (g_gametype.integer == GT_WOLF_GOLDY) // No MG42 when playing goldy
+	{
+		return;
+	}
+
 	// Xian -- If in knifeonly mode, prevent MG42's from spawning
 	if (g_knifeonly.integer != 1)
 	{

@@ -56,6 +56,9 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(SolutionDir)\tools\createpk3.bat" "$(SolutionDir)" "$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -70,6 +73,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(SolutionDir)\tools\createpk3.bat" "$(SolutionDir)" "$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cgame\cg_atmospheric.c" />
