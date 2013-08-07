@@ -233,13 +233,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
-    <None Include="etgoldy.lua">
-      <Filter>LUA</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\src\game\sha-1\license.txt">
       <Filter>Source Files\sha-1</Filter>
+    </Text>
+    <Text Include="etgoldy.lua">
+      <Filter>LUA</Filter>
     </Text>
   </ItemGroup>
 </Project>

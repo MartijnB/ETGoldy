@@ -150,9 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
-    <None Include="etgoldy.lua">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
+    <Text Include="etgoldy.lua" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="etgoldy.lua">
