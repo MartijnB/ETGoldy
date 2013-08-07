@@ -503,7 +503,7 @@ static qboolean GLimp_InitOpenGL3xContext()
 }
 
 #define MSG_ERR_OLD_VIDEO_DRIVER                                                       \
-	"\nET:Legacy with OpenGL 3.x renderer can not run on this "                             \
+	"\nET:Goldy with OpenGL 3.x renderer can not run on this "                             \
 	"machine since it is missing one or more required OpenGL "                             \
 	"extensions. Please update your video card drivers and try again.\n"
 
