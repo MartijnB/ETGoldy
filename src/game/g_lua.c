@@ -1597,7 +1597,7 @@ static const luaL_Reg etlib[] =
 	{ "Info_SetValueForKey",     _et_Info_SetValueForKey     },
 	{ "Info_ValueForKey",        _et_Info_ValueForKey        },
 	{ "Q_CleanStr",              _et_Q_CleanStr              },
-	// ET 
+	// ET Filesystem
 	{ "trap_FS_GetFileList",     _et_trap_FS_GetFileList     },
 	{ "trap_FS_FOpenFile",       _et_trap_FS_FOpenFile       },
 	{ "trap_FS_Read",            _et_trap_FS_Read            },
