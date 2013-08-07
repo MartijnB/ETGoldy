@@ -1733,6 +1733,9 @@ extern vmCvar_t g_customConfig;
 
 extern vmCvar_t g_moverScale;
 
+// Goldy cvars
+extern vmCvar_t g_dynamiteShootable;
+
 typedef struct GeoIPTag
 {
 	fileHandle_t GeoIPDatabase;
