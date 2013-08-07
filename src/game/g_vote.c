@@ -57,8 +57,9 @@ static const char *gameNames[] =
 	"Objective",
 	"Stopwatch",
 	"Campaign",
-	"Last Man Standing"
-	"Map Voting"        // GT_WOLF_MAPVOTE
+	"Last Man Standing",
+	"Map Voting",        // GT_WOLF_MAPVOTE
+	"Goldy"
 	// GT_MAX_GAME_TYPE
 };
 
