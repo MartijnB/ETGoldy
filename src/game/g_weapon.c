@@ -3581,9 +3581,17 @@ qboolean Bullet_Fire_Extended(gentity_t *source, gentity_t *attacker, vec3_t sta
 	}
 	tent->s.otherEntityNum = attacker->s.number;
 
-	if (traceEnt->takedamage)
+	if (traceEnt->takedamage || traceEnt->methodOfDeath == MOD_DYNAMITE)
 	{
-		G_Damage(traceEnt, attacker, attacker, forward, tr.endpos, damage, (distance_falloff ? DAMAGE_DISTANCEFALLOFF : 0), GetAmmoTableData(attacker->s.weapon)->mod);
+		if (traceEnt->methodOfDeath == MOD_DYNAMITE)
+		{
+			traceEnt->nextthink = level.time + 100;
+			traceEnt->think = G_ExplodeMissile;
+		}
+		else
+		{
+			G_Damage(traceEnt, attacker, attacker, forward, tr.endpos, damage, (distance_falloff ? DAMAGE_DISTANCEFALLOFF : 0), GetAmmoTableData(attacker->s.weapon)->mod);
+		}
 
 		// allow bullets to "pass through" func_explosives if they break by taking another simultanious shot
 		if (traceEnt->s.eType == ET_EXPLOSIVE)
