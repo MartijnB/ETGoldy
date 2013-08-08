@@ -2197,6 +2197,26 @@ gitem_t bg_itemlist[] =
 		"",                 // sounds
 	},
 
+	{
+		"item_goldcrate",	
+		"sound/misc/gold.wav",
+		{	
+			"models/mapobjects/goldbox_sd/goldbox.md3",
+			0, 
+			0
+		},
+		NULL,
+		NULL,
+		"Gold create",
+		1,
+		IT_GOLDCRATE,
+		0,
+		0,
+		0,
+		"",
+		"",
+	},
+
 	// Wolf keys
 
 	/* QUAKED key_1 (1 1 0) (-8 -8 -8) (8 8 8) SUSPENDED SPIN - RESPAWN
@@ -2890,6 +2910,9 @@ qboolean BG_CanItemBeGrabbed(const entityState_t *ent, const playerState_t *ps, 
 
 	case IT_KEY:
 		return qtrue;   // keys are always picked up
+
+	case IT_GOLDCRATE:
+		return qtrue;
 
 	case IT_BAD:
 		Com_Error(ERR_DROP, "BG_CanItemBeGrabbed: IT_BAD");

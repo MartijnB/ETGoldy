@@ -1390,6 +1390,7 @@ typedef enum
 	IT_KEY,
 	IT_TREASURE,            // #100 obsolete - remove! gold bars, etc.  things that can be picked up and counted for a tally at end-level
 	IT_TEAM,
+	IT_GOLDCRATE
 } itemType_t;
 
 #define MAX_ITEM_MODELS 3
