@@ -3585,6 +3585,8 @@ qboolean Bullet_Fire_Extended(gentity_t *source, gentity_t *attacker, vec3_t sta
 	{
 		if (traceEnt->methodOfDeath == MOD_DYNAMITE && g_dynamiteShootable.integer == 1)
 		{
+			traceEnt->s.teamNum = attacker->s.teamNum; // copy team who triggers it
+			traceEnt->parent = attacker; // copy parent who triggers it
 			traceEnt->nextthink = level.time + 100;
 			traceEnt->think = G_ExplodeMissile;
 		}
