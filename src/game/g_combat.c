@@ -2119,6 +2119,15 @@ qboolean G_RadiusDamage(vec3_t origin, gentity_t *inflictor, gentity_t *attacker
 	{
 		ent = &g_entities[entityList[e]];
 
+		// radius damage triggering dynamites
+		if (g_dynamiteChainable.integer == 1 && ent->methodOfDeath == MOD_DYNAMITE)
+		{
+			ent->s.teamNum = attacker->s.teamNum; // copy team who triggers it
+			ent->parent = attacker; // copy parent who triggers it
+			ent->nextthink = level.time + 100;
+			ent->think = G_ExplodeMissile;
+		}
+
 		if (ent == ignore)
 		{
 			continue;

@@ -303,6 +303,7 @@ vmCvar_t g_moverScale;
 
 // Goldy
 vmCvar_t g_dynamiteShootable;
+vmCvar_t g_dynamiteChainable;
 
 cvarTable_t gameCvarTable[] =
 {
@@ -565,6 +566,7 @@ cvarTable_t gameCvarTable[] =
 	{ &g_moverScale,               "g_moverScale",               "1.0",                        0 },
 	// Goldy
 	{ &g_dynamiteShootable,        "g_dynamiteShootable",        "1",                          0 },
+	{ &g_dynamiteChainable,        "g_dynamiteChainable",        "1",                          0 },
 };
 
 // made static to avoid aliasing

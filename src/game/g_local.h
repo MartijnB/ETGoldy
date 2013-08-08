@@ -1735,6 +1735,7 @@ extern vmCvar_t g_moverScale;
 
 // Goldy cvars
 extern vmCvar_t g_dynamiteShootable;
+extern vmCvar_t g_dynamiteChainable;
 
 typedef struct GeoIPTag
 {
