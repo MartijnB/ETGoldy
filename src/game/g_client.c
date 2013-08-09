@@ -683,7 +683,10 @@ void limbo(gentity_t *ent, qboolean makeCorpse)
 			trap_UnlinkEntity(ent);
 		}
 
-		G_DropLimboGold(ent);
+		if (g_gametype.integer == GT_WOLF_GOLDY)
+		{
+			G_DropLimboGold(ent);
+		}
 
 		// reset these values
 		ent->client->ps.viewlocked        = 0;

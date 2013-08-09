@@ -1373,6 +1373,11 @@ static void Svcmd_KickNum_f(void)
 		return;
 	}
 
+	if (g_gametype.integer != GT_WOLF_GOLDY)
+	{
+		G_Printf("Server is not in goldy gametype\n");
+		return;
+	}
 	if (trap_Argc() < 2 || trap_Argc() > 3)
 	{
 		G_Printf("Usage: givegold <player name> [amount]\n");

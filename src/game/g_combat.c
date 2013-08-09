@@ -526,7 +526,7 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 	}
 
 	// Drop 1 extra goldcrate when its not a suicide, teamkill or killed by wold
-	if (attacker != self && !dieFromSameTeam && killer != ENTITYNUM_WORLD)
+	if (g_gametype.integer == GT_WOLF_GOLDY && attacker != self && !dieFromSameTeam && killer != ENTITYNUM_WORLD)
 	{
 		self->client->gold++;
 	}
