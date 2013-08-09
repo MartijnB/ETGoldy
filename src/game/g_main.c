@@ -3977,6 +3977,70 @@ void CheckExitRules(void)
 					return;
 				}
 			}
+			else if (g_gametype.integer == GT_WOLF_GOLDY)
+			{
+				int axisScore, alliesScore;
+				int winningTeam;
+
+				axisScore = level.teamScores[TEAM_AXIS];
+				alliesScore = level.teamScores[TEAM_ALLIES];
+
+				if (axisScore > alliesScore)
+				{
+					winningTeam = TEAM_AXIS;
+				}
+				else if (axisScore < alliesScore)
+				{
+					winningTeam = TEAM_ALLIES;
+				}
+				else // Tie
+				{
+					if (level.numPlayingClients == 1) // If there is a single player, let him win
+					{
+						if (level.numTeamClients[TEAM_AXIS] > level.numTeamClients[TEAM_ALLIES])
+						{
+							winningTeam = TEAM_AXIS;
+						}
+						else
+						{
+							winningTeam = TEAM_ALLIES;
+						}
+					}
+					else if (level.numPlayingClients == 0) // No players, let a random team win
+					{
+						if ((rand() %2) == TEAM_AXIS)
+						{
+							winningTeam = TEAM_AXIS;
+						}
+						else
+						{
+							winningTeam = TEAM_ALLIES;
+						}
+					}
+					else
+					{
+						return; // sudden death!
+					}
+				}
+
+				if (winningTeam == TEAM_AXIS)
+				{
+					trap_GetConfigstring(CS_MULTI_MAPWINNER, cs, sizeof(cs));
+					Info_SetValueForKey(cs, "winner", "0");
+					trap_SetConfigstring(CS_MULTI_MAPWINNER, cs);
+					G_LogExit("Axis team wins.");
+					trap_SendServerCommand(-1, "print \"Axis team has cashed most gold.\n\"");
+					return;
+				}
+				else
+				{
+					trap_GetConfigstring(CS_MULTI_MAPWINNER, cs, sizeof(cs));
+					Info_SetValueForKey(cs, "winner", "1");
+					trap_SetConfigstring(CS_MULTI_MAPWINNER, cs);
+					G_LogExit("Allied team wins.");
+					trap_SendServerCommand(-1, "print \"Allied team has cashed most gold.\n\"");
+				}
+			}
 			else
 			{
 				// check for sudden death
