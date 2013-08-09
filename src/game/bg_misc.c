@@ -2207,7 +2207,7 @@ gitem_t bg_itemlist[] =
 		},
 		NULL,
 		NULL,
-		"Gold create",
+		"Gold crate",
 		1,
 		IT_GOLDCRATE,
 		0,
