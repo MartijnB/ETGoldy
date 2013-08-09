@@ -607,6 +607,33 @@ void G_DropLimboAmmo(gentity_t *ent)
 	}
 }
 
+void G_DropLimboGold(gentity_t *ent)
+{
+	if (!ent->client || g_gamestate.integer != GS_PLAYING)
+	{
+		return;
+	}
+
+	{
+		vec3_t launchvel, launchspot;
+		int i;
+
+		for (i = 0; i <= ent->client->gold; i++)
+		{
+			launchvel[0] = crandom();
+			launchvel[1] = crandom();
+			launchvel[2] = 0;
+
+			VectorScale(launchvel, 100, launchvel);
+
+			launchvel[2] = 100;
+			VectorCopy(ent->r.currentOrigin, launchspot);
+
+			Weapon_Goldcrate_Ext(ent, launchspot, launchspot, launchvel);
+		}
+	}
+}
+
 /*
 ================
 limbo
@@ -655,6 +682,8 @@ void limbo(gentity_t *ent, qboolean makeCorpse)
 		{
 			trap_UnlinkEntity(ent);
 		}
+
+		G_DropLimboGold(ent);
 
 		// reset these values
 		ent->client->ps.viewlocked        = 0;
@@ -2866,6 +2895,7 @@ void ClientSpawn(gentity_t *ent, qboolean revived, qboolean teamChange, qboolean
 	client->sess       = savedSess;
 	client->ps.ping    = savedPing;
 	client->ps.teamNum = savedTeam;
+	client->gold       = 0;
 
 	for (i = 0 ; i < MAX_PERSISTANT ; i++)
 	{

@@ -395,6 +395,42 @@ void Weapon_MagicAmmo_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t
 #endif
 }
 
+void Weapon_Goldcrate_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity)
+{
+	vec3_t    mins, maxs;
+	trace_t   tr;
+	gitem_t   *item;
+	gentity_t *ent2;
+	
+	item = BG_FindItemForClassName("item_goldcrate");
+
+	VectorSet(mins, -(ITEM_RADIUS + 8), -(ITEM_RADIUS + 8), 0);
+	VectorSet(maxs, (ITEM_RADIUS + 8), (ITEM_RADIUS + 8), 2 * (ITEM_RADIUS + 8));
+
+	trap_EngineerTrace(&tr, viewpos, mins, maxs, tosspos, ent->s.number, MASK_MISSILESHOT);
+	if (tr.startsolid)
+	{
+		VectorCopy(forward, viewpos);
+		VectorNormalizeFast(viewpos);
+		VectorMA(ent->r.currentOrigin, -24.f, viewpos, viewpos);
+
+		trap_EngineerTrace(&tr, viewpos, mins, maxs, tosspos, ent->s.number, MASK_MISSILESHOT);
+
+		VectorCopy(tr.endpos, tosspos);
+	}
+	else if (tr.fraction < 1)       // oops, bad launch spot
+	{
+		VectorCopy(tr.endpos, tosspos);
+		SnapVectorTowards(tosspos, viewpos);
+	}
+
+	ent2            = LaunchItem(item, tosspos, velocity, ent->s.number);
+	ent2->think     = MagicSink;
+	ent2->nextthink = level.time + 30000;
+
+	ent2->parent = ent;
+}
+
 // took this out of Weapon_Syringe so we can use it from other places
 qboolean ReviveEntity(gentity_t *ent, gentity_t *traceEnt)
 {

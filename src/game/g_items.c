@@ -605,6 +605,13 @@ int Pickup_Health(gentity_t *ent, gentity_t *other)
 	return -1;
 }
 
+int Pickup_Gold(gentity_t *ent, gentity_t *other)
+{
+	other->client->gold++;
+	
+	return -1;
+}
+
 //======================================================================
 
 /*
@@ -727,7 +734,8 @@ void Touch_Item(gentity_t *ent, gentity_t *other, trace_t *trace)
 		// Don't let them pickup winning stuff in warmup
 		if (ent->item->giType != IT_WEAPON &&
 		    ent->item->giType != IT_AMMO &&
-		    ent->item->giType != IT_HEALTH)
+		    ent->item->giType != IT_HEALTH &&
+			ent->item->giType != IT_GOLDCRATE)
 		{
 			return;
 		}
@@ -746,6 +754,9 @@ void Touch_Item(gentity_t *ent, gentity_t *other, trace_t *trace)
 		break;
 	case IT_TEAM:
 		respawn = Pickup_Team(ent, other);
+		break;
+	case IT_GOLDCRATE:
+		respawn = Pickup_Gold(ent, other);
 		break;
 	default:
 		return;

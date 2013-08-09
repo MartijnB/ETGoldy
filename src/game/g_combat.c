@@ -402,6 +402,8 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 
 	if (attacker == self)
 	{
+		self->client->gold--; // no extra gold when selfkill
+
 		if (self->client)
 		{
 			self->client->pers.playerStats.suicides++;
@@ -409,6 +411,8 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 	}
 	else if (dieFromSameTeam)
 	{
+		self->client->gold--; // no extra gold when teamkill
+
 		G_LogTeamKill(attacker, weap);
 	}
 	else

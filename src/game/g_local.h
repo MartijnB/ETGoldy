@@ -833,6 +833,8 @@ struct gclient_s
 	qboolean hasaward;
 	qboolean wantsscore;
 	qboolean maxlivescalced;
+
+	int gold;
 };
 
 typedef struct
@@ -1330,6 +1332,7 @@ void CalcMuzzlePointForActivate(gentity_t *ent, vec3_t forward, vec3_t right, ve
 
 void Weapon_MagicAmmo_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity);
 void Weapon_Medic_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity);
+void Weapon_Goldcrate_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity);
 
 // g_client.c
 int TeamCount(int ignoreClientNum, team_t team);
