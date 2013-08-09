@@ -578,6 +578,10 @@ void CG_LoadPanel_RenderMissionDescriptionText(panel_button_t *button)
 
 		cs = cgs.arenaData.lmsdescription;
 	}
+	else if (cgs.gametype == GT_WOLF_GOLDY)
+	{
+		cs = "Your mission is to cash as much gold as possible at the flags poles to make your team get the highest score!";
+	}
 	else
 	{
 		if (!cgs.arenaInfoLoaded)

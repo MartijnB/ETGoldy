@@ -1610,6 +1610,10 @@ void CG_LimboPanel_RenderObjectiveText(panel_button_t *button)
 
 		Q_strncpyz(buffer, cg.objMapDescription_Neutral, sizeof(buffer));
 	}
+	else if (cg_gameType.integer == GT_WOLF_GOLDY)
+	{
+		Q_strncpyz(buffer, "Your mission is to cash as much gold as possible at the flags poles to make your team get the highest score!" , sizeof(buffer));
+	}
 	else
 	{
 		if (CG_LimboPanel_GetTeam() == TEAM_SPECTATOR)
