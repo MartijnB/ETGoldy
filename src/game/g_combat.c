@@ -402,8 +402,6 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 
 	if (attacker == self)
 	{
-		self->client->gold--; // no extra gold when selfkill
-
 		if (self->client)
 		{
 			self->client->pers.playerStats.suicides++;
@@ -411,8 +409,6 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 	}
 	else if (dieFromSameTeam)
 	{
-		self->client->gold--; // no extra gold when teamkill
-
 		G_LogTeamKill(attacker, weap);
 	}
 	else
@@ -527,6 +523,12 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 #endif
 
 		G_LogPrintf("Kill: %i %i %i: %s killed %s by %s\n", killer, self->s.number, meansOfDeath, killerName, self->client->pers.netname, obit);
+	}
+
+	// Drop 1 extra goldcrate when its not a suicide, teamkill or killed by wold
+	if (attacker != self && !dieFromSameTeam && killer != ENTITYNUM_WORLD)
+	{
+		self->client->gold++;
 	}
 
 #ifdef FEATURE_LUA

@@ -618,7 +618,7 @@ void G_DropLimboGold(gentity_t *ent)
 		vec3_t launchvel, launchspot;
 		int i;
 
-		for (i = 0; i <= ent->client->gold; i++)
+		for (i = 0; i <= ent->client->gold - 1; i++)
 		{
 			launchvel[0] = crandom();
 			launchvel[1] = crandom();
