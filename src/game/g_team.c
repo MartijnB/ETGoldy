@@ -1033,6 +1033,7 @@ void SP_team_WOLF_objective(gentity_t *ent)
 #define ALLIED_ONLY 8
 
 void checkpoint_touch(gentity_t *self, gentity_t *other, trace_t *trace);
+void checkpoint_touch_goldy(gentity_t *ent);
 
 void checkpoint_use_think(gentity_t *self)
 {
@@ -1190,6 +1191,11 @@ void checkpoint_think(gentity_t *self)
 
 void checkpoint_touch(gentity_t *self, gentity_t *other, trace_t *trace)
 {
+	if (g_gametype.integer == GT_WOLF_GOLDY && self->touch != NULL)
+	{
+		checkpoint_touch_goldy(other);
+	}
+
 	if (self->count == other->client->sess.sessionTeam)
 	{
 		return;
@@ -1274,6 +1280,11 @@ void checkpoint_spawntouch(gentity_t *self, gentity_t *other, trace_t *trace)
 #ifdef FEATURE_OMNIBOT
 	char *flagAction = "touch";
 #endif
+
+	if (g_gametype.integer == GT_WOLF_GOLDY && self->touch != NULL)
+	{
+		checkpoint_touch_goldy(other);
+	}
 
 	if (self->count == other->client->sess.sessionTeam)
 	{
@@ -1440,6 +1451,38 @@ void checkpoint_spawntouch(gentity_t *self, gentity_t *other, trace_t *trace)
 			}
 		}
 	}
+}
+
+void checkpoint_touch_goldy(gentity_t *ent)
+{
+	int bonus = 0;
+	int i;
+
+	if (ent->client->gold > 0)
+	{
+		trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^7You have cashed ^3%i ^7gold!\"", ent->client->gold));
+
+		if(ent->client->sess.sessionTeam == TEAM_AXIS)
+		{
+			AP(va("chat \"^dGoldy: ^3%i gold cashed by ^7%s ^1(AXIS)\" -1", ent->client->gold, ent->client->pers.netname));
+		}
+		else
+		{
+			AP(va("chat \"^dGoldy: ^3%i gold cashed by ^7%s ^d(ALLIES)\" -1", ent->client->gold, ent->client->pers.netname));
+		}
+
+		for (i = 0; i < ent->client->gold; i++) {
+			bonus += (i * 2); //double bonus
+		}
+
+		G_AddSkillPoints(ent, SK_BATTLE_SENSE, (ent->client->gold * 5.f) + bonus);
+	}
+	else
+	{
+		trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^3You need to have gold before you can cash!\""));
+	}
+
+	ent->client->gold = 0;
 }
 
 /*QUAKED team_WOLF_checkpoint (.9 .3 .9) (-16 -16 0) (16 16 128) SPAWNPOINT CP_HOLD AXIS_ONLY ALLIED_ONLY
