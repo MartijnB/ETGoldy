@@ -1359,6 +1359,68 @@ static void Svcmd_KickNum_f(void)
 	}
 }
 
+ void Svcmd_GiveGold_f(void)
+{
+	gclient_t *cl;
+	int       amount = 1;
+	char      sAmount[MAX_TOKEN_CHARS];
+	char      name[MAX_TOKEN_CHARS];
+
+	// make sure server is running
+	if (!G_Is_SV_Running())
+	{
+		G_Printf("Server is not running.\n");
+		return;
+	}
+
+	if (trap_Argc() < 2 || trap_Argc() > 3)
+	{
+		G_Printf("Usage: givegold <player name> [amount]\n");
+		return;
+	}
+
+	if (trap_Argc() == 3)
+	{
+		trap_Argv(2, sAmount, sizeof(sAmount));
+		amount = atoi(sAmount);
+	}
+	else
+	{
+		amount = 1;
+	}
+
+	trap_Argv(1, name, sizeof(name));
+	cl = G_GetPlayerByName(name);   //ClientForString( name );
+
+	if (cl)
+	{
+		if (cl->ps.teamNum == TEAM_BEGIN)
+		{
+			G_Printf("Round has not started yet\n");
+
+			return;
+		}
+
+		if (cl->ps.teamNum == TEAM_SPECTATOR)
+		{
+			G_Printf("Player is not on a team\n");
+
+			return;
+		}
+
+		if (cl->ps.pm_flags & PMF_LIMBO)
+		{
+			G_Printf("Player is not alive\n");
+
+			return;
+		}
+
+		g_entities[cl->ps.clientNum].client->gold += amount;
+
+		trap_SendServerCommand(-1, va("cp \"^3Admin gave %i gold to ^7%s^3!\n\"", amount, cl->pers.netname));
+	}
+}
+
 void G_UpdateSvCvars(void)
 {
 	char cs[MAX_INFO_STRING];
@@ -1659,6 +1721,12 @@ qboolean ConsoleCommand(void)
 	if (!Q_stricmp(cmd, "kick"))
 	{
 		Svcmd_Kick_f();
+		return qtrue;
+	}
+
+	if (!Q_stricmp(cmd, "givegold"))
+	{
+		Svcmd_GiveGold_f();
 		return qtrue;
 	}
 
