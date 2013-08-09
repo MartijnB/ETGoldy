@@ -6,6 +6,7 @@ if [%~2] == [] echo Please specifiy a configuration && exit
 set SOLUTIONDIR=%~1
 set BUILDDIR=%SOLUTIONDIR%\..\build\
 set TOOLSDIR=%SOLUTIONDIR%\tools\
+set PK3DIR=%SOLUTIONDIR%\..\pk3\
 
 set CONFIGURATION=%~2
 
@@ -15,6 +16,11 @@ del "%BUILDDIR%\%CONFIGURATION%\bin\goldy\goldy_bin.pk3"
 if not exist "%BUILDDIR%\%CONFIGURATION%\bin\goldy\cgame_mp_x86.dll" echo cgame_mp_x86.dll not found && exit
 if not exist "%BUILDDIR%\%CONFIGURATION%\bin\goldy\ui_mp_x86.dll" echo ui_mp_x86.dll not found && exit
 
-echo Creating pk3 file...
+echo Creating bin pk3 file...
 cd "%BUILDDIR%\%CONFIGURATION%\bin\goldy\"
 "%TOOLSDIR%\zip.exe" -9 "goldy_bin.pk3" "cgame_mp_x86.dll" "ui_mp_x86.dll"
+
+echo %PK3DIR%
+echo Creating mod pk3 file...
+cd "%PK3DIR%"
+"%TOOLSDIR%\zip.exe" -9 -r "%BUILDDIR%\%CONFIGURATION%\bin\goldy\goldy.pk3" *
