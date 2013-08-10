@@ -238,7 +238,7 @@
     <Text Include="..\src\game\sha-1\license.txt">
       <Filter>Source Files\sha-1</Filter>
     </Text>
-    <Text Include="etgoldy.lua">
+    <Text Include="..\src\game\etgoldy.lua">
       <Filter>LUA</Filter>
     </Text>
   </ItemGroup>

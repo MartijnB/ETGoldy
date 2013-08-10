@@ -150,10 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
-    <Text Include="etgoldy.lua" />
+    <Text Include="..\src\game\etgoldy.lua" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="etgoldy.lua">
+    <Content Include="..\src\game\etgoldy.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
