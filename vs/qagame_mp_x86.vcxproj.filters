@@ -19,6 +19,9 @@
     <Filter Include="LUA">
       <UniqueIdentifier>{bf523ba1-6b6b-49e9-93ff-2417a9cc8f5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LUA\Mapscripts">
+      <UniqueIdentifier>{5bd8ab58-b44d-4cc0-aa41-49ee0a4c8956}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\game\bg_animation.c">
@@ -233,6 +236,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\game\input_tokens.gperf" />
+    <None Include="..\pk3\mapscripts\goldrush_goldy.lua">
+      <Filter>LUA\Mapscripts</Filter>
+    </None>
+    <None Include="..\pk3\mapscripts\oasis_goldy.lua">
+      <Filter>LUA\Mapscripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\src\game\sha-1\license.txt">

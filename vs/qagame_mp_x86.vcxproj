@@ -149,6 +149,8 @@
     <ClInclude Include="..\src\qcommon\q_shared.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\pk3\mapscripts\goldrush_goldy.lua" />
+    <None Include="..\pk3\mapscripts\oasis_goldy.lua" />
     <None Include="..\src\game\input_tokens.gperf" />
     <Text Include="..\src\game\etgoldy.lua" />
   </ItemGroup>
