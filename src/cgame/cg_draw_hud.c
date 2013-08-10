@@ -1762,6 +1762,40 @@ static float CG_DrawLocalTime(float y)
 	return y + 12 + 4;
 }
 
+static float CG_DrawPersonalScore(float y)
+{
+	int w, w2, x;
+	char personalScore[48];
+	vec4_t color = { 0.625f, 0.625f, 0.6f, 1.0f };
+
+	personalScore[0] = '\0';
+
+	// Draw Gold
+	if (cg_drawPersonalScore.integer & 1) {
+			Q_strcat(personalScore, sizeof(personalScore),
+				va("^3Gold: %i", cg.snap->ps.persistant[PERS_GOLD]));
+	}
+
+	// Draw Score
+	if (cg_drawPersonalScore.integer & 2) {
+		if (cg_drawPersonalScore.integer & 1)
+			Q_strcat(personalScore, sizeof(personalScore), " ");
+
+			Q_strcat(personalScore, sizeof(personalScore),
+				va("^3Score: %i", (32768 * cg.snap->ps.stats[STAT_XP_OVERFLOW]) + cg.snap->ps.stats[STAT_XP]));
+	}
+
+	w  = CG_Text_Width_Ext(personalScore, 0.19f, 0, &cgs.media.limboFont1);
+	w2 = (UPPERRIGHT_W > w) ? UPPERRIGHT_W : w;
+
+	x = Ccg_WideX(UPPERRIGHT_X) - w2 - 2;
+	CG_FillRect(x, y, w2 + 5, 12 + 2, HUD_Background);
+	CG_DrawRect_FixedBorder(x, y, w2 + 5, 12 + 2, 1, HUD_Border);
+	CG_Text_Paint_Ext(x + ((w2 - w) / 2) + 2, y + 11, 0.19f, 0.19f, color, personalScore, 0, 0, 0, &cgs.media.limboFont1);
+
+	return y + 12 + 4;
+}
+
 static float CG_DrawTeamScore(float y)
 {
 	int w, w2, x;
@@ -2113,6 +2147,11 @@ void CG_DrawUpperRight(void)
 	if (cg_drawTime.integer & LOCALTIME_ON)
 	{
 		y = CG_DrawLocalTime(y);
+	}
+
+	if (cg_drawPersonalScore.integer)
+	{
+		y = CG_DrawPersonalScore(y);
 	}
 
 	if (cg_drawTeamScore.integer)

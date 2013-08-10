@@ -308,6 +308,7 @@ vmCvar_t cg_popupFadeTime;
 vmCvar_t cg_popupStayTime;
 
 // goldy
+vmCvar_t cg_drawPersonalScore;
 vmCvar_t cg_drawTeamScore;
 
 typedef struct
@@ -521,6 +522,7 @@ cvarTable_t cvarTable[] =
 	{ &cg_popupStayTime,         "cg_popupStayTime",         "2000",  CVAR_ARCHIVE                 },
 
 	// goldy
+	{ &cg_drawPersonalScore,     "cg_drawPersonalScore",     "3",     CVAR_ARCHIVE                 },
 	{ &cg_drawTeamScore,         "cg_drawTeamScore",         "7",     CVAR_ARCHIVE                 },
 };
 

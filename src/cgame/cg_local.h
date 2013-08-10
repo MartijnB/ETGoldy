@@ -2180,6 +2180,7 @@ extern vmCvar_t cg_popupFadeTime;
 extern vmCvar_t cg_popupStayTime;
 
 // goldy
+extern vmCvar_t cg_drawPersonalScore;
 extern vmCvar_t cg_drawTeamScore;
 
 // local clock flags
