@@ -315,25 +315,33 @@ static void WM_DrawClientScore(int x, int y, score_t *score, float *color, float
 
 		if (ci->powerups & ((1 << PW_REDFLAG) | (1 << PW_BLUEFLAG)))
 		{
-			CG_DrawPic(tempx - 1, y + 1, 10, 10, cgs.media.objectiveShader);
-			offset   += 10;
-			tempx    += 10;
+			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.objectiveShader);
+			offset   += 14;
+			tempx    += 14;
+			maxchars -= 2;
+		}
+
+		if (ci->team == cgs.clientinfo[cg.clientNum].team && ci->gold > 0)
+		{
+			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.goldIcon);
+			offset += 14;
+			tempx += 14;
 			maxchars -= 2;
 		}
 
 		// draw the skull icon if out of lives
 		if (score->respawnsLeft == -2 || (cgs.clientinfo[cg.clientNum].team != TEAM_SPECTATOR && ci->team == cgs.clientinfo[cg.clientNum].team && cgs.clientinfo[score->client].health == -1))
 		{
-			CG_DrawPic(tempx - 1, y + 1, 10, 10, cgs.media.scoreEliminatedShader);
-			offset   += 10;
-			tempx    += 10;
+			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.scoreEliminatedShader);
+			offset   += 14;
+			tempx    += 14;
 			maxchars -= 2;
 		}
 		else if (cgs.clientinfo[cg.clientNum].team != TEAM_SPECTATOR && ci->team == cgs.clientinfo[cg.clientNum].team && cgs.clientinfo[score->client].health == 0)
 		{
-			CG_DrawPic(tempx - 1, y + 1, 10, 10, cgs.media.medicIcon);
-			offset   += 10;
-			tempx    += 10;
+			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.medicIcon);
+			offset   += 14;
+			tempx    += 14;
 			maxchars -= 2;
 		}
 	}

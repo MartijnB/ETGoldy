@@ -744,7 +744,7 @@ void TeamplayInfoMessage(team_t team)
 				}
 			}
 
-			Com_sprintf(entry, sizeof(entry), " %i %i %i %i %i", level.sortedClients[i], player->client->pers.teamState.location[0], player->client->pers.teamState.location[1], h, player->s.powerups);
+			Com_sprintf(entry, sizeof(entry), " %i %i %i %i %i %i", level.sortedClients[i], player->client->pers.teamState.location[0], player->client->pers.teamState.location[1], h, player->s.powerups, player->client->gold);
 
 			j = strlen(entry);
 			if (stringlength + j > sizeof(string))

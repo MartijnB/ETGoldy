@@ -1681,6 +1681,9 @@ static void CG_RegisterGraphics(void)
 	cgs.media.alliedUniformShader = trap_R_RegisterShader("sprites/uniform_allied");
 	cgs.media.axisUniformShader   = trap_R_RegisterShader("sprites/uniform_axis");
 
+	// goldy
+	cgs.media.goldIcon = trap_R_RegisterShader("sprites/gold");
+
 	// used in: command map
 	cgs.media.ccFilterPics[0] = trap_R_RegisterShaderNoMip("gfx/limbo/filter_axis");
 	cgs.media.ccFilterPics[1] = trap_R_RegisterShaderNoMip("gfx/limbo/filter_allied");

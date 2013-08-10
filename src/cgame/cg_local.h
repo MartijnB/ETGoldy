@@ -592,6 +592,8 @@ typedef struct clientInfo_s
 	int weaponState_last;
 #endif
 
+	int	gold;
+
 } clientInfo_t;
 
 typedef enum
@@ -1394,6 +1396,9 @@ typedef struct
 
 	qhandle_t alliedUniformShader;
 	qhandle_t axisUniformShader;
+
+	// goldy
+	qhandle_t goldIcon;
 
 	sfxHandle_t sfx_artilleryExp[3];
 	sfxHandle_t sfx_artilleryDist;

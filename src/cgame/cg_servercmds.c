@@ -96,7 +96,7 @@ static void CG_ParseScore(team_t team)
 CG_ParseTeamInfo
 =================
 */
-#define NUMARGS 5
+#define NUMARGS 6
 static void CG_ParseTeamInfo(void)
 {
 	int i;
@@ -125,6 +125,7 @@ static void CG_ParseTeamInfo(void)
 		cgs.clientinfo[client].location[1] = atoi(CG_Argv(i * NUMARGS + 4));
 		cgs.clientinfo[client].health      = atoi(CG_Argv(i * NUMARGS + 5));
 		cgs.clientinfo[client].powerups    = atoi(CG_Argv(i * NUMARGS + 6));
+		cgs.clientinfo[client].gold        = atoi(CG_Argv(i * NUMARGS + 7));
 	}
 }
 
