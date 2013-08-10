@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cgame_x86", "cgame_mp_x86.vcxproj", "{1898AB48-8BAC-41D8-8C9E-AB1B4F5DE1B1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cgame_mp_x86", "cgame_mp_x86.vcxproj", "{1898AB48-8BAC-41D8-8C9E-AB1B4F5DE1B1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qagame_x86", "qagame_mp_x86.vcxproj", "{492169C6-5925-46FD-8E13-B33694AE218F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qagame_mp_x86", "qagame_mp_x86.vcxproj", "{492169C6-5925-46FD-8E13-B33694AE218F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui_x86", "ui_mp_x86.vcxproj", "{0A916EE3-D460-4C9B-AB1B-B665A2408F83}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui_mp_x86", "ui_mp_x86.vcxproj", "{0A916EE3-D460-4C9B-AB1B-B665A2408F83}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "etlded", "etlded.vcxproj", "{AE526E1B-1CDD-43C6-B57D-CE79F7133469}"
 	ProjectSection(ProjectDependencies) = postProject
