@@ -827,6 +827,29 @@ qboolean G_EntitiesFree(void)
 
 /*
 =================
+G_CountEntities
+=================
+*/
+int G_CountEntities(void)
+{
+	int i, count = 0;
+	gentity_t* ent;
+
+	for (i = 0; i < MAX_GENTITIES; i++)
+	{
+		ent = &g_entities[i];
+
+		if (ent->inuse)
+		{
+			count++;
+		}
+	}
+
+	return count;
+}
+
+/*
+=================
 G_FreeEntity
 
 Marks the entity as free

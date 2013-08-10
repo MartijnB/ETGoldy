@@ -833,6 +833,7 @@ static const gentity_field_t gentity_fields[] =
 	_et_gentity_addfield(dl_stylestring,      FIELD_STRING,     FIELD_FLAG_READONLY),
 	_et_gentity_addfield(duration,            FIELD_FLOAT,      0),
 	_et_gentity_addfield(end_size,            FIELD_INT,        0),
+	_et_gentity_addfield(entstate,			  FIELD_INT,		0),
 	_et_gentity_addfield(enemy,               FIELD_ENTITY,     0),
 	_et_gentity_addfield(flags,               FIELD_INT,        FIELD_FLAG_READONLY),
 	_et_gentity_addfield(harc,                FIELD_FLOAT,      0),
@@ -1097,6 +1098,392 @@ static int _et_G_EntitiesFree(lua_State *L)
 	return 1;
 }
 
+// entnum = et.G_SpawnGEntityFromSV({key="value"})
+static int _et_G_SpawnGEntityFromSV(lua_State *L)
+{
+	const char* key;
+	const char* value;
+
+	gentity_t *new_ent;
+
+	level.numSpawnVars     = 0;
+	level.numSpawnVarChars = 0;
+	
+	luaL_checktype(L, 1, LUA_TTABLE);
+
+	lua_pushnil(L);
+
+	while(lua_next(L, 1) != 0)
+	{
+		/* uses 'key' (at index -2) and 'value' (at index -1) */
+		//G_Printf("%s - %s\n", lua_typename(L, lua_type(L, -2)),	lua_typename(L, lua_type(L, -1)));
+
+		key = luaL_checkstring(L, -2);
+
+		if (key == NULL)
+		{
+			luaL_error(L, "Invalid search key!");
+			return 0;
+		}
+
+		value = (char*)lua_tostring(L, -1);
+
+		if (value == NULL)
+		{
+			luaL_error(L, "Invalid search key!");
+			return 0;
+		}
+
+		if (level.numSpawnVars == MAX_SPAWN_VARS)
+		{
+			G_Error("G_ScriptAction_Create(): MAX_SPAWN_VARS");
+		}
+
+		level.spawnVars[level.numSpawnVars][0] = G_AddSpawnVarToken(key);
+		level.spawnVars[level.numSpawnVars][1] = G_AddSpawnVarToken(value);
+
+		level.numSpawnVars++;
+
+		/* removes 'value'; keeps 'key' for next iteration */
+		lua_pop(L, 1);
+	}
+
+	lua_pop(L, 1);
+
+	level.spawning = qtrue;
+
+	new_ent = G_SpawnGEntityFromSpawnVars();
+
+	level.spawning = qfalse;
+
+	trap_LinkEntity(new_ent);
+
+	lua_pushinteger(L, new_ent->s.number);
+	return 1;
+}
+
+static void _load_fields_for_entity(lua_State *L, gentity_t* ent)
+{
+	int i, innertable, innerinnertable;
+	unsigned long   addr;
+	const gentity_field_t* field;
+
+	if (!lua_checkstack(L, 1))
+	{
+		G_Error("%s\n", "Couldn't allocate memory to extend LUA stack!");
+	}
+
+	lua_newtable(L);
+	innertable = lua_gettop(L);
+
+	for (i = 0; i < (((0.0f + sizeof(gentity_fields)) / sizeof(gentity_fields[0])) - 1); i++)
+	{
+		field = &gentity_fields[i];
+
+		if (!lua_checkstack(L, 2))
+		{
+			G_Error("%s\n", "Couldn't allocate memory to extend LUA stack!");
+		}
+
+		addr = (field->flags & FIELD_FLAG_GENTITY) ? (unsigned long)ent : (unsigned long)ent->client;
+
+		// for NULL entities, return nil (prevents server crashes!)
+		if (!addr)
+		{
+			lua_pushnil(L);
+			lua_setfield(L, innertable, field->name);
+
+			continue;
+		}
+
+		addr += (unsigned long)field->mapping;
+
+		switch (field->type)
+		{
+		case FIELD_ENTITY:
+		case FIELD_TRAJECTORY:
+			lua_pushnil(L);
+			break;
+
+		case FIELD_INT:
+			lua_pushnumber(L, *(int *)addr);
+			break;
+
+		case FIELD_FLOAT:
+			lua_pushnumber(L, *(float *)addr);
+			break;
+
+		case FIELD_STRING:
+			if (field->flags & FIELD_FLAG_NOPTR)
+			{
+				lua_pushstring(L, (char *) ((byte *)addr));
+			}
+			else
+			{
+				lua_pushstring(L, *(char **) ((byte *)addr));
+			}
+
+			break;
+
+		case FIELD_VEC3:
+			if (!lua_checkstack(L, 4))
+			{
+				G_Error("%s\n", "Couldn't allocate memory to extend LUA stack!");
+			}
+
+			lua_newtable(L);
+			innerinnertable = lua_gettop(L);
+			lua_pushnumber(L, (*(vec3_t *)addr)[0]);
+			lua_rawseti(L, innerinnertable, 1);
+			lua_pushnumber(L, (*(vec3_t *)addr)[1]);
+			lua_rawseti(L, innerinnertable, 2);
+			lua_pushnumber(L, (*(vec3_t *)addr)[2]);
+			lua_rawseti(L, innerinnertable, 3);
+			break;
+
+		default:
+			lua_pushnil(L);
+
+			G_Printf("Entity type mapping missing: %s!\n", field->name);
+			break;
+		}
+
+		lua_setfield(L, innertable, field->name);
+	}
+}
+
+// ent count = et.G_CountEntities()
+static int _et_G_CountEntities(lua_State *L)
+{
+	lua_pushinteger(L, G_CountEntities());
+	return 1;
+}
+
+// {key="value"} = et.G_Entity(entnum)
+static int _et_G_Entity(lua_State *L)
+{
+	int entnum = luaL_checkint(L, 1);
+	gentity_t* ent;
+
+	if (entnum >= MAX_GENTITIES)
+	{
+		lua_pushnil(L);
+		return 1;
+	}
+
+	ent = &g_entities[entnum];
+
+	if (!ent->inuse)
+	{
+		lua_pushnil(L);
+		return 1;
+	}
+
+	_load_fields_for_entity(L, ent);
+	
+	return 1;
+}
+
+// {{key="value"}} = et.G_SearchEntities({}) or {{key="value"}} = et.G_SearchEntities({filterKey="filterValue"})
+static int _et_G_SearchEntities(lua_State *L) 
+{
+	int i, returntable;
+	char* tmpstr;
+	char* tmpstr2;
+	vec3_t tmpvec3;
+	const char* fieldname;
+	qboolean matchedentities[MAX_GENTITIES];
+	gentity_t* ent;
+	gentity_field_t* ent_field;
+	unsigned long   addr;
+	
+	luaL_checktype(L, 1, LUA_TTABLE);
+
+	lua_pushnil(L);
+
+	if (lua_next(L, 1) != 0) 
+	{
+		memset(matchedentities, qtrue, sizeof(matchedentities));
+
+		do
+		{
+			/* uses 'key' (at index -2) and 'value' (at index -1) */
+			//G_Printf("%s - %s\n", lua_typename(L, lua_type(L, -2)),	lua_typename(L, lua_type(L, -1)));
+
+			fieldname = luaL_checkstring(L, -2);
+
+			if (fieldname == NULL)
+			{
+				luaL_error(L, "Invalid search key!");
+				return 0;
+			}
+
+			for (i = 0; i < MAX_GENTITIES; i++)
+			{
+				if (matchedentities[i]) 
+				{
+					ent = &g_entities[i];
+
+					if (ent->inuse)
+					{
+						ent_field = _et_gentity_getfield(ent, (char*)fieldname);
+
+						// break on invalid gentity field
+						if (!ent_field)
+						{
+							luaL_error(L, "tried to get invalid gentity field \"%s\"", fieldname);
+							return 0;
+						}
+
+						addr = (ent_field->flags & FIELD_FLAG_GENTITY) ? (unsigned long)ent : (unsigned long)ent->client;
+
+						// for NULL entities, return nil (prevents server crashes!)
+						if (!addr)
+						{
+							matchedentities[i] = qfalse;
+							continue;
+						}
+
+						addr += (unsigned long)ent_field->mapping;
+
+						switch (ent_field->type)
+						{
+						case FIELD_INT:
+							if (lua_type(L, -1) == LUA_TNUMBER) 
+							{
+								if (lua_tonumber(L, -1) != (*(int *)addr))
+								{
+									matchedentities[i] = qfalse;
+								}
+							}
+							else if (lua_type(L, -1) == LUA_TBOOLEAN) 
+							{
+								if ((lua_toboolean(L, -1) ? qtrue : qfalse) != (*(int *)addr))
+								{
+									matchedentities[i] = qfalse;
+								}
+							}
+							else
+							{
+								luaL_error(L, "Expected integer but found %s for field \"%s\"", lua_typename(L, lua_type(L, -1)), fieldname);
+								return 0;
+							}
+							break;
+
+						case FIELD_FLOAT:
+							if (lua_type(L, -1) == LUA_TNUMBER) 
+							{
+								if (lua_tonumber(L, -1) != (*(float *)addr))
+								{
+									matchedentities[i] = qfalse;
+								}
+							}
+							else
+							{
+								luaL_error(L, "Expected float but found %s for field \"%s\"", lua_typename(L, lua_type(L, -1)), fieldname);
+								return 0;
+							}
+							break;
+
+						case FIELD_STRING:
+							if (lua_type(L, -1) == LUA_TSTRING) 
+							{
+								tmpstr = (ent_field->flags & FIELD_FLAG_NOPTR) ? (char *) ((byte *)addr) : *(char **) ((byte *)addr);
+								tmpstr2 = (char*)lua_tostring(L, -1);
+
+								if (Q_stricmp(tmpstr, tmpstr2) != 0)
+								{
+									matchedentities[i] = qfalse;
+								}
+							}
+							else
+							{
+								luaL_error(L, "Expected string but found %s for field \"%s\"", lua_typename(L, lua_type(L, -1)), fieldname);
+								return 0;
+							}
+							break;
+
+						case FIELD_VEC3:
+							if (lua_type(L, -1) == LUA_TTABLE) 
+							{
+								_et_gentity_setvec3(L, &tmpvec3);
+
+								if (tmpvec3[0] != (*(vec3_t *)addr)[0] || tmpvec3[1] != (*(vec3_t *)addr)[1] || tmpvec3[2] != (*(vec3_t *)addr)[2])
+								{
+									matchedentities[i] = qfalse;
+								}
+							}
+							else
+							{
+								luaL_error(L, "Expected table but found %s for field \"%s\"", lua_typename(L, lua_type(L, -1)), fieldname);
+								return 0;
+							}
+							break;
+
+						default:
+							matchedentities[i] = qfalse;
+
+							G_Printf("Entity type mapping missing: %s!\n", ent_field->name);
+							break;
+						}
+					}
+					else
+					{
+						matchedentities[i] = qfalse;
+					}
+
+				}
+			}
+
+			/* removes 'value'; keeps 'key' for next iteration */
+			lua_pop(L, 1);
+		}
+		while (lua_next(L, 1) != 0);
+
+		lua_pop(L, 1);
+
+		//return the matched entities
+		lua_newtable(L);
+		returntable = lua_gettop(L);
+
+		for (i = 0; i < MAX_GENTITIES; i++)
+		{
+			if (matchedentities[i]) 
+			{
+				ent = &g_entities[i];
+
+				if (ent->inuse)
+				{
+					_load_fields_for_entity(L, ent);
+
+					lua_setfield(L, returntable, va("%i", i));
+					//lua_rawseti(L, returntable, i); 
+				}
+			}
+		}
+	}
+	else //return all entities
+	{
+		lua_newtable(L);
+		returntable = lua_gettop(L);
+
+		for (i = 0; i < MAX_GENTITIES; i++)
+		{
+			ent = &g_entities[i];
+
+			if (ent->inuse)
+			{
+				_load_fields_for_entity(L, ent);
+
+				lua_setfield(L, returntable, va("%i", i));
+				//lua_rawseti(L, returntable, i); 
+			}
+		}
+	}
+
+	return 1;
+}
+
 // add G_GetSpawnVar
 // spawnval = et.G_GetSpawnVar( entnum, key )
 // This function works with fields ( g_spawn.c @ 72 )
@@ -1245,9 +1632,9 @@ static int _et_G_SetSpawnVar(lua_State *L)
 		}
 		else
 		{
-			free(*(char **)((byte *)ent + ofs));
-			*(char **)((byte *)ent + ofs) = malloc(strlen(buffer));
-			Q_strncpyz(*(char **)((byte *)ent + ofs), buffer, strlen(buffer));
+			//free(*(char **)((byte *)ent + ofs));
+			*(char **)((byte *)ent + ofs) = G_Alloc(strlen(buffer) + 1);
+			Q_strncpyz(*(char **)((byte *)ent + ofs), buffer, strlen(buffer) + 1);
 		}
 		return 1;
 	case F_VECTOR:
@@ -1430,9 +1817,9 @@ static int _et_gentity_set(lua_State *L)
 		}
 		else
 		{
-			free(*(char **)addr);
-			*(char **)addr = malloc(strlen(buffer));
-			Q_strncpyz(*(char **)addr, buffer, strlen(buffer));
+			//free(*(char **)addr);
+			*(char **)addr = G_Alloc(strlen(buffer) + 1);
+			Q_strncpyz(*(char **)addr, buffer, strlen(buffer) + 1);
 		}
 		break;
 	case FIELD_FLOAT:
@@ -1618,8 +2005,13 @@ static const luaL_Reg etlib[] =
 	{ "G_LoseSkillPoints",       _et_G_LoseSkillPoints       },
 	// Entities
 	{ "G_Spawn",                 _et_G_Spawn                 },
+	{ "G_SpawnGEntityFromSV",    _et_G_SpawnGEntityFromSV    },
 	{ "G_TempEntity",            _et_G_TempEntity            },
 	{ "G_FreeEntity",            _et_G_FreeEntity            },
+
+	{ "G_Entity",				 _et_G_Entity                },
+	{ "G_CountEntities",		 _et_G_CountEntities		 },
+	{ "G_SearchEntities",		 _et_G_SearchEntities		 },
 
 	{ "G_GetSpawnVar",           _et_G_GetSpawnVar           },
 

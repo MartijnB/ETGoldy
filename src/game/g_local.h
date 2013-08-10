@@ -1186,6 +1186,7 @@ void Prop_Break_Sound(gentity_t *ent);
 void Spawn_Shard(gentity_t *ent, gentity_t *inflictor, int quantity, int type);
 
 // g_utils.c
+int G_CountEntities(void);
 qboolean G_EntitiesFree(void);
 int G_FindConfigstringIndex(const char *name, int start, int max, qboolean create);
 void G_RemoveConfigstringIndex(const char *name, int start, int max);
