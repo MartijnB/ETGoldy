@@ -1764,7 +1764,7 @@ gentity_t *fire_grenade(gentity_t *self, vec3_t start, vec3_t dir, int grenadeWP
 	if (grenadeWPID == WP_DYNAMITE)
 	{
 		noExplode       = qtrue;
-		bolt->nextthink = level.time + 15000;
+		bolt->nextthink = level.time + (g_dynamiteSinkTime.integer * 1000);
 		bolt->think     = DynaSink;
 		bolt->timestamp = level.time + 16500;
 		bolt->free      = DynaFree;
