@@ -339,7 +339,6 @@ static void WM_DrawClientScore(int x, int y, score_t *score, float *color, float
 		}
 		else if (cgs.clientinfo[cg.clientNum].team != TEAM_SPECTATOR && ci->team == cgs.clientinfo[cg.clientNum].team && cgs.clientinfo[score->client].health == 0)
 		{
-			Com_Printf("Health: %i\n", cgs.clientinfo[score->client].health);
 			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.medicIcon);
 			offset   += 14;
 			tempx    += 14;
