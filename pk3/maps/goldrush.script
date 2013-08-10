@@ -1,0 +1,42 @@
+game_manager
+{
+	spawn
+	{
+		remapshader "models/mapobjects/tanks_sd/mg42turret" "models/mapobjects/tanks_sd/mg42turret_2"
+		
+		remapshaderflush
+		
+		// Game rules
+		wm_axis_respawntime	30
+		wm_allied_respawntime	30
+		wm_number_of_objectives 1
+		wm_set_round_timelimit	30
+
+		// Stopwatch mode defending team (0=Axis, 1=Allies)
+		wm_set_defending_team	0
+
+		// Winner on expiration of round timer (0=Axis, 1=Allies)
+		wm_setwinner	0
+
+		wait 500
+		setautospawn	"Axis Spawn"	0
+		setautospawn	"Allied Spawn"	1
+
+		// start triggered loops on/off as required (eg: command post radio sounds)
+		disablespeaker allies_compost_sound
+		disablespeaker axis_compost_sound
+		disablespeaker allies_compost_sound_lms
+		disablespeaker axis_compost_sound_lms
+
+		wait 2000
+	}
+}
+
+ceilingfan
+{
+	spawn
+	{
+		wait 100
+		setrotation	0 300 0
+	}
+}
