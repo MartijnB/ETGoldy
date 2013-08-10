@@ -1515,6 +1515,8 @@ void CG_InitConsoleCommands(void)
 	trap_AddCommand("lua_status");
 #endif
 
+	trap_AddCommand("dropgold");
+
 	// remove engine commands to avoid abuse
 	trap_RemoveCommand("+lookup");
 	trap_RemoveCommand("-lookup");

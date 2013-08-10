@@ -1053,6 +1053,54 @@ void G_TeamDataForString(const char *teamstr, int clientNum, team_t *team, spect
 	}
 }
 
+void MagicSink( gentity_t *self );
+// Kennie: Drop gold
+void G_DropGold(gentity_t *ent)
+{
+	gitem_t *item = BG_FindItemForClassName("item_goldcrate");
+	vec3_t launchvel = { 0, 0, 0 };
+	vec3_t forward;
+	vec3_t origin;
+	vec3_t angles;
+	gentity_t *entGoldcrate;	
+	int speed, gravity;
+
+	// Dead players or spectators can't drop gold!
+	if (ent->client->sess.sessionTeam == TEAM_SPECTATOR || ent->client->ps.pm_flags & PMF_LIMBO || ent->client->ps.pm_type == PM_DEAD)
+	{
+		return;
+	}
+
+	if (ent->client->gold < 1)
+	{
+		trap_SendServerCommand( ent->client->ps.clientNum, va("cp \"^7You don't have any remaining gold to drop!\""));
+		return;
+	}
+
+	// Gold count
+	ent->client->gold--;
+	
+	VectorCopy(ent->client->ps.origin, origin);
+	VectorCopy(ent->client->ps.viewangles, angles);
+
+	if(angles[PITCH] > 0)
+	{
+		angles[PITCH] = 0;
+	}
+
+	AngleVectors(angles, forward, NULL, NULL);
+	VectorMA(ent->client->ps.velocity, 96, forward, launchvel);
+	VectorMA(origin, 36, forward, origin);
+	origin[2] += ent->client->ps.viewheight;
+
+	entGoldcrate = LaunchItem(item, origin, launchvel, ent->s.number);
+    entGoldcrate->think = MagicSink;
+	entGoldcrate->nextthink = level.time + 30000;
+
+	trap_SendServerCommand( ent->client->ps.clientNum, va("cp \"^7You dropped an gold crate! (^3%i ^7remaining)\"", ent->client->gold));
+}
+
+
 /*
 =================
 SetTeam
@@ -4498,6 +4546,10 @@ void ClientCommand(int clientNum)
 	else if (Q_stricmp(cmd, "setspawnpt") == 0)
 	{
 		Cmd_SetSpawnPoint_f(ent);
+	}
+	else if (Q_stricmp(cmd, "dropgold") == 0)
+	{
+		G_DropGold(ent);
 	}
 	else if (G_commandCheck(ent, cmd, qfalse))
 	{
