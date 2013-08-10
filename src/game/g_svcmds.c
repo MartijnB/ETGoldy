@@ -1421,6 +1421,7 @@ static void Svcmd_KickNum_f(void)
 		}
 
 		g_entities[cl->ps.clientNum].client->gold += amount;
+		cl->ps.persistant[PERS_GOLD] += amount;
 
 		trap_SendServerCommand(-1, va("cp \"^3Admin gave %i gold to ^7%s^3!\n\"", amount, cl->pers.netname));
 	}

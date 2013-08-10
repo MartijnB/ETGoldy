@@ -608,6 +608,7 @@ int Pickup_Health(gentity_t *ent, gentity_t *other)
 int Pickup_Gold(gentity_t *ent, gentity_t *other)
 {
 	other->client->gold++;
+	other->client->ps.persistant[PERS_GOLD]++;
 	
 	return -1;
 }

@@ -1079,6 +1079,7 @@ void G_DropGold(gentity_t *ent)
 
 	// Gold count
 	ent->client->gold--;
+	ent->client->ps.persistant[PERS_GOLD]--;
 	
 	VectorCopy(ent->client->ps.origin, origin);
 	VectorCopy(ent->client->ps.viewangles, angles);
@@ -1097,7 +1098,7 @@ void G_DropGold(gentity_t *ent)
     entGoldcrate->think = MagicSink;
 	entGoldcrate->nextthink = level.time + 30000;
 
-	trap_SendServerCommand( ent->client->ps.clientNum, va("cp \"^7You dropped an gold crate! (^3%i ^7remaining)\"", ent->client->gold));
+	trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^7You dropped an gold crate! (^3%i ^7remaining)\"", ent->client->gold));
 }
 
 

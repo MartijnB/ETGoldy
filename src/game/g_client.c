@@ -686,7 +686,10 @@ void limbo(gentity_t *ent, qboolean makeCorpse)
 		if (g_gametype.integer == GT_WOLF_GOLDY)
 		{
 			G_DropLimboGold(ent);
-		}
+
+			ent->client->gold                     = 0;
+			ent->client->ps.persistant[PERS_GOLD] = 0;
+		}	
 
 		// reset these values
 		ent->client->ps.viewlocked        = 0;
@@ -2894,15 +2897,20 @@ void ClientSpawn(gentity_t *ent, qboolean revived, qboolean teamChange, qboolean
 		client->maxlivescalced = set;
 	}
 
-	client->pers       = saved;
-	client->sess       = savedSess;
-	client->ps.ping    = savedPing;
-	client->ps.teamNum = savedTeam;
-	client->gold       = 0;
+	client->pers          = saved;
+	client->sess          = savedSess;
+	client->ps.ping       = savedPing;
+	client->ps.teamNum    = savedTeam;
 
 	for (i = 0 ; i < MAX_PERSISTANT ; i++)
 	{
 		client->ps.persistant[i] = persistant[i];
+	}
+
+	if (g_gametype.integer == GT_WOLF_GOLDY)
+	{
+		client->gold                     = 0;
+		client->ps.persistant[PERS_GOLD] = 0;
 	}
 
 	// increment the spawncount so the client will detect the respawn

@@ -586,7 +586,9 @@ typedef enum
 	// mg42                // I don't understand these here.  can someone explain?
 	PERS_HWEAPON_USE,
 	// wolfkick
-	PERS_WOLFKICK
+	PERS_WOLFKICK,
+
+	PERS_GOLD
 } persEnum_t;
 
 // entityState_t->eFlags

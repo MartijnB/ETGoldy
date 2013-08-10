@@ -1482,7 +1482,8 @@ void checkpoint_touch_goldy(gentity_t *ent)
 		trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^3You need to have gold before you can cash!\""));
 	}
 
-	ent->client->gold = 0;
+	ent->client->gold                     = 0;
+	ent->client->ps.persistant[PERS_GOLD] = 0;
 }
 
 /*QUAKED team_WOLF_checkpoint (.9 .3 .9) (-16 -16 0) (16 16 128) SPAWNPOINT CP_HOLD AXIS_ONLY ALLIED_ONLY
