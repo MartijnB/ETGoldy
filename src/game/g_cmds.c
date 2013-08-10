@@ -1066,7 +1066,7 @@ void G_DropGold(gentity_t *ent)
 	int speed, gravity;
 
 	// Dead players or spectators can't drop gold!
-	if (ent->client->sess.sessionTeam == TEAM_SPECTATOR || ent->client->ps.pm_flags & PMF_LIMBO || ent->client->ps.pm_type == PM_DEAD)
+	if (ent->client->sess.sessionTeam == TEAM_SPECTATOR || ent->health <= 0)
 	{
 		return;
 	}
