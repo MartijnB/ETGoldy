@@ -304,6 +304,7 @@ vmCvar_t g_moverScale;
 // Goldy
 vmCvar_t g_dynamiteShootable;
 vmCvar_t g_dynamiteChainable;
+vmCvar_t g_goldSinkTime;
 
 cvarTable_t gameCvarTable[] =
 {
@@ -567,6 +568,7 @@ cvarTable_t gameCvarTable[] =
 	// Goldy
 	{ &g_dynamiteShootable,        "g_dynamiteShootable",        "1",                          0 },
 	{ &g_dynamiteChainable,        "g_dynamiteChainable",        "1",                          0 },
+	{ &g_goldSinkTime,             "g_goldSinkTime",             "30",                         0 },
 };
 
 // made static to avoid aliasing

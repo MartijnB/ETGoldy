@@ -426,7 +426,7 @@ void Weapon_Goldcrate_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t
 
 	ent2            = LaunchItem(item, tosspos, velocity, ent->s.number);
 	ent2->think     = MagicSink;
-	ent2->nextthink = level.time + 30000;
+	ent2->nextthink = level.time + (g_goldSinkTime.integer * 1000);
 
 	ent2->parent = ent;
 }

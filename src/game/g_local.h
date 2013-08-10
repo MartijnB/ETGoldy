@@ -1739,6 +1739,7 @@ extern vmCvar_t g_moverScale;
 // Goldy cvars
 extern vmCvar_t g_dynamiteShootable;
 extern vmCvar_t g_dynamiteChainable;
+extern vmCvar_t g_goldSinkTime;
 
 typedef struct GeoIPTag
 {

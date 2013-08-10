@@ -1096,7 +1096,7 @@ void G_DropGold(gentity_t *ent)
 
 	entGoldcrate = LaunchItem(item, origin, launchvel, ent->s.number);
     entGoldcrate->think = MagicSink;
-	entGoldcrate->nextthink = level.time + 30000;
+	entGoldcrate->nextthink = level.time + (g_goldSinkTime.integer * 1000);
 
 	trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^7You dropped an gold crate! (^3%i ^7remaining)\"", ent->client->gold));
 }
