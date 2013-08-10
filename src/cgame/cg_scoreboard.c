@@ -321,7 +321,7 @@ static void WM_DrawClientScore(int x, int y, score_t *score, float *color, float
 			maxchars -= 2;
 		}
 
-		if (ci->team == cgs.clientinfo[cg.clientNum].team && ci->gold > 0)
+		if (cgs.gametype == GT_WOLF_GOLDY && ci->team == cgs.clientinfo[cg.clientNum].team && ci->gold > 0)
 		{
 			CG_DrawPic(tempx - 1, y + 1, 14, 14, cgs.media.goldIcon);
 			offset += 14;

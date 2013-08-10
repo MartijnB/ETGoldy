@@ -2051,7 +2051,7 @@ static void CG_DrawCrosshairNames(void)
 		CG_FilledBar((320 - 110 / 2) + cgs.wideXoffset, 190, 110, 10, c, NULL, bgcolor, barFrac, 16);
 	}
 
-	if (cgs.clientinfo[cg.crosshairClientNum].team == cgs.clientinfo[cg.snap->ps.clientNum].team || cgs.clientinfo[cg.snap->ps.clientNum].team == TEAM_SPECTATOR ) 
+	if (cgs.gametype == GT_WOLF_GOLDY && cgs.clientinfo[cg.crosshairClientNum].team == cgs.clientinfo[cg.snap->ps.clientNum].team || cgs.clientinfo[cg.snap->ps.clientNum].team == TEAM_SPECTATOR) 
 	{
 		int gold = cgs.clientinfo[cg.crosshairClientNum].gold;
 
