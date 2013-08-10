@@ -105,6 +105,10 @@ static void CG_ParseTeamInfo(void)
 
 	numSortedTeamPlayers = atoi(CG_Argv(1));
 
+	// update teamscores more often
+	cg.teamScores[0] = atoi(CG_Argv(2));
+	cg.teamScores[1] = atoi(CG_Argv(3));
+
 	if (numSortedTeamPlayers < 0 || numSortedTeamPlayers >= MAX_CLIENTS)
 	{
 		CG_Printf("CG_ParseTeamInfo: numSortedTeamPlayers out of range (%i)", numSortedTeamPlayers);
@@ -113,7 +117,7 @@ static void CG_ParseTeamInfo(void)
 
 	for (i = 0 ; i < numSortedTeamPlayers ; i++)
 	{
-		client = atoi(CG_Argv(i * NUMARGS + 2));
+		client = atoi(CG_Argv(i * NUMARGS + 4));
 
 		if (client < 0 || client >= MAX_CLIENTS)
 		{
@@ -121,11 +125,11 @@ static void CG_ParseTeamInfo(void)
 			return;
 		}
 
-		cgs.clientinfo[client].location[0] = atoi(CG_Argv(i * NUMARGS + 3));
-		cgs.clientinfo[client].location[1] = atoi(CG_Argv(i * NUMARGS + 4));
-		cgs.clientinfo[client].health      = atoi(CG_Argv(i * NUMARGS + 5));
-		cgs.clientinfo[client].powerups    = atoi(CG_Argv(i * NUMARGS + 6));
-		cgs.clientinfo[client].gold        = atoi(CG_Argv(i * NUMARGS + 7));
+		cgs.clientinfo[client].location[0] = atoi(CG_Argv(i * NUMARGS + 5));
+		cgs.clientinfo[client].location[1] = atoi(CG_Argv(i * NUMARGS + 6));
+		cgs.clientinfo[client].health      = atoi(CG_Argv(i * NUMARGS + 7));
+		cgs.clientinfo[client].powerups    = atoi(CG_Argv(i * NUMARGS + 8));
+		cgs.clientinfo[client].gold        = atoi(CG_Argv(i * NUMARGS + 9));
 	}
 }
 

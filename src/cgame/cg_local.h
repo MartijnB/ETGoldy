@@ -2179,6 +2179,9 @@ extern vmCvar_t cg_popupTime;
 extern vmCvar_t cg_popupFadeTime;
 extern vmCvar_t cg_popupStayTime;
 
+// goldy
+extern vmCvar_t cg_drawTeamScore;
+
 // local clock flags
 #define LOCALTIME_ON                0x01
 #define LOCALTIME_SECOND            0x02

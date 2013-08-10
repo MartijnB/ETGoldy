@@ -307,6 +307,9 @@ vmCvar_t cg_popupTime;
 vmCvar_t cg_popupFadeTime;
 vmCvar_t cg_popupStayTime;
 
+// goldy
+vmCvar_t cg_drawTeamScore;
+
 typedef struct
 {
 	vmCvar_t *vmCvar;
@@ -516,6 +519,9 @@ cvarTable_t cvarTable[] =
 	{ &cg_popupTime,             "cg_popupTime",             "1000",  CVAR_ARCHIVE                 },
 	{ &cg_popupFadeTime,         "cg_popupFadeTime",         "2500",  CVAR_ARCHIVE                 },
 	{ &cg_popupStayTime,         "cg_popupStayTime",         "2000",  CVAR_ARCHIVE                 },
+
+	// goldy
+	{ &cg_drawTeamScore,         "cg_drawTeamScore",         "7",     CVAR_ARCHIVE                 },
 };
 
 int      cvarTableSize = sizeof(cvarTable) / sizeof(cvarTable[0]);

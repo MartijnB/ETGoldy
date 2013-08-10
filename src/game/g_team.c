@@ -759,7 +759,7 @@ void TeamplayInfoMessage(team_t team)
 
 	bufferedData = team == TEAM_AXIS ? level.tinfoAxis : level.tinfoAllies;
 
-	tinfo = va("tinfo %i%s", cnt, string);
+	tinfo = va("tinfo %i %i %i%s", cnt, level.teamScores[TEAM_AXIS], level.teamScores[TEAM_ALLIES], string);
 	if (!Q_stricmp(bufferedData, tinfo))       // no change so just return
 	{
 		return;

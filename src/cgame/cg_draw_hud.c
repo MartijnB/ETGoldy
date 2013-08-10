@@ -1762,6 +1762,71 @@ static float CG_DrawLocalTime(float y)
 	return y + 12 + 4;
 }
 
+static float CG_DrawTeamScore(float y)
+{
+	int w, w2, x;
+	char teamScore[48];
+	int yourTeam, otherTeam;
+	vec4_t color = { 0.625f, 0.625f, 0.6f, 1.0f };
+
+	if (cg.snap->ps.persistant[PERS_TEAM] == TEAM_AXIS)
+	{
+		yourTeam = cg.teamScores[0];
+		otherTeam = cg.teamScores[1];
+	}
+	else
+	{
+		yourTeam = cg.teamScores[1];
+		otherTeam = cg.teamScores[0];
+	}
+
+	teamScore[0] = '\0';
+
+	// Colors
+	if (cg_drawTeamScore.integer & 4 && cg.snap->ps.persistant[PERS_TEAM] != TEAM_SPECTATOR)
+	{
+		if (yourTeam < otherTeam)
+		{
+			Q_strcat(teamScore, sizeof(teamScore), "^1");
+		}
+		else if (otherTeam < yourTeam)
+		{
+			Q_strcat(teamScore, sizeof(teamScore), "^2");
+		}
+		else
+		{
+			Q_strcat(teamScore, sizeof(teamScore), "^8");
+		}
+	}
+
+	// Draw your team
+	if (cg_drawTeamScore.integer & 1)
+	{
+		Q_strcat(teamScore, sizeof(teamScore), va("%s %i", (cg.snap->ps.persistant[PERS_TEAM] == TEAM_AXIS) ? "Axis:" : "Allies:", yourTeam));
+	}
+	
+	// Draw other team
+	if (cg_drawTeamScore.integer & 2)
+	{
+		if (cg_drawTeamScore.integer & 1)
+		{
+			Q_strcat(teamScore, sizeof(teamScore), " ");
+		}
+
+		Q_strcat(teamScore, sizeof(teamScore), va("%s %i", (cg.snap->ps.persistant[PERS_TEAM] == TEAM_AXIS) ? "Allies:" : "Axis:", otherTeam));
+	}
+
+	w  = CG_Text_Width_Ext(teamScore, 0.19f, 0, &cgs.media.limboFont1);
+	w2 = (UPPERRIGHT_W > w) ? UPPERRIGHT_W : w;
+
+	x = Ccg_WideX(UPPERRIGHT_X) - w2 - 2;
+	CG_FillRect(x, y, w2 + 5, 12 + 2, HUD_Background);
+	CG_DrawRect_FixedBorder(x, y, w2 + 5, 12 + 2, 1, HUD_Border);
+	CG_Text_Paint_Ext(x + ((w2 - w) / 2) + 2, y + 11, 0.19f, 0.19f, color, teamScore, 0, 0, 0, &cgs.media.limboFont1);
+
+	return y + 12 + 4;
+}
+
 static void CG_DrawPlayerStatus(void)
 {
 	if (activehud->weaponicon.visible)
@@ -2048,5 +2113,10 @@ void CG_DrawUpperRight(void)
 	if (cg_drawTime.integer & LOCALTIME_ON)
 	{
 		y = CG_DrawLocalTime(y);
+	}
+
+	if (cg_drawTeamScore.integer)
+	{
+		y = CG_DrawTeamScore(y);
 	}
 }
