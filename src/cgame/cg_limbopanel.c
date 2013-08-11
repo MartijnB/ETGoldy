@@ -2296,13 +2296,18 @@ void CG_LimboPanel_WeaponPanel(panel_button_t *button)
 		vec4_t clr2 = { 1.f, 1.f, 1.f, 0.4f };
 
 		// render in normal mode
+#ifndef FEATURE_GOLDY
 		CG_LimboPanel_WeaponPanel_DrawWeapon(&button->rect, weap, cnt > 1 ? qtrue : qfalse, va("%iof%i", CG_LimboPanel_GetSelectedWeaponNum() + 1, cnt), CG_LimboPanel_RealWeaponIsDisabled(weap));
+#endif
 
 		if (cnt <= 1 || !BG_CursorInRect(&button->rect))
 		{
 			trap_R_SetColor(clr2);
 		}
+
+#ifndef FEATURE_GOLDY
 		CG_DrawPic(button->rect.x + button->rect.w - 20, button->rect.y + 4, 16, 12, cgs.media.limboWeaponCardArrow);
+#endif
 
 
 		trap_R_SetColor(clr);
@@ -3050,6 +3055,8 @@ bg_playerclass_t *CG_LimboPanel_GetPlayerClass(void)
 
 int CG_LimboPanel_WeaponCount(void)
 {
+	CG_Printf("WC: %i\n", CG_LimboPanel_WeaponCount_ForSlot(cgs.ccSelectedWeaponNumber));
+
 	return CG_LimboPanel_WeaponCount_ForSlot(cgs.ccSelectedWeaponNumber);
 }
 
