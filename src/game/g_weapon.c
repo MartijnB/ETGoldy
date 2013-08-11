@@ -4368,11 +4368,11 @@ void FireWeapon(gentity_t *ent)
 		break;
 	case WP_KAR98:
 		aimSpreadScale = 1.0f;
-		Bullet_Fire(ent, KAR98_SPREAD * aimSpreadScale, KAR98_DAMAGE, qfalse);
+		Bullet_Fire(ent, KAR98_SPREAD * aimSpreadScale, (g_gametype.integer == GT_WOLF_GOLDY) ? 9999 : KAR98_DAMAGE, qfalse);
 		break;
 	case WP_CARBINE:
 		aimSpreadScale = 1.0f;
-		Bullet_Fire(ent, CARBINE_SPREAD * aimSpreadScale, CARBINE_DAMAGE, qfalse);
+		Bullet_Fire(ent, CARBINE_SPREAD * aimSpreadScale, (g_gametype.integer == GT_WOLF_GOLDY) ? 9999 : CARBINE_DAMAGE, qfalse);
 		break;
 	case WP_FG42SCOPE:
 		Bullet_Fire(ent, FG42SCOPE_SPREAD * aimSpreadScale, FG42SCOPE_DAMAGE, qfalse);
