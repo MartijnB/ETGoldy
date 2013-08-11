@@ -736,7 +736,7 @@ void Touch_Item(gentity_t *ent, gentity_t *other, trace_t *trace)
 		if (ent->item->giType != IT_WEAPON &&
 		    ent->item->giType != IT_AMMO &&
 		    ent->item->giType != IT_HEALTH &&
-			ent->item->giType != IT_GOLDCRATE)
+			ent->item->giType != IT_GOLDBAR)
 		{
 			return;
 		}
@@ -756,7 +756,7 @@ void Touch_Item(gentity_t *ent, gentity_t *other, trace_t *trace)
 	case IT_TEAM:
 		respawn = Pickup_Team(ent, other);
 		break;
-	case IT_GOLDCRATE:
+	case IT_GOLDBAR:
 		respawn = Pickup_Gold(ent, other);
 		break;
 	default:

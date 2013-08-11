@@ -1057,12 +1057,12 @@ void MagicSink( gentity_t *self );
 // Kennie: Drop gold
 void G_DropGold(gentity_t *ent)
 {
-	gitem_t *item = BG_FindItemForClassName("item_goldcrate");
+	gitem_t *item = BG_FindItemForClassName("item_goldbar");
 	vec3_t launchvel = { 0, 0, 0 };
 	vec3_t forward;
 	vec3_t origin;
 	vec3_t angles;
-	gentity_t *entGoldcrate;	
+	gentity_t *entGoldbar;	
 	int speed, gravity;
 
 	// Dead players or spectators can't drop gold!
@@ -1094,9 +1094,9 @@ void G_DropGold(gentity_t *ent)
 	VectorMA(origin, 36, forward, origin);
 	origin[2] += ent->client->ps.viewheight;
 
-	entGoldcrate = LaunchItem(item, origin, launchvel, ent->s.number);
-    entGoldcrate->think = MagicSink;
-	entGoldcrate->nextthink = level.time + (g_goldSinkTime.integer * 1000);
+	entGoldbar = LaunchItem(item, origin, launchvel, ent->s.number);
+    entGoldbar->think = MagicSink;
+	entGoldbar->nextthink = level.time + (g_goldSinkTime.integer * 1000);
 
 	trap_SendServerCommand(ent->client->ps.clientNum, va("cp \"^7You dropped an gold crate! (^3%i ^7remaining)\"", ent->client->gold));
 }
