@@ -2086,7 +2086,9 @@ evilbanigoto:
 				traceEnt->think     = G_ExplodeMissile;
 
 				// moved down here to prevent two prints when dynamite IS near objective
+#ifndef FEATURE_GOLDY
 				trap_SendServerCommand(ent - g_entities, "cp \"Dynamite is now armed with a 30 second timer!\" 1");
+#endif
 
 				// check if player is in trigger objective field
 				// made this the actual bounding box of dynamite instead of range, also must snap origin to line up properly
