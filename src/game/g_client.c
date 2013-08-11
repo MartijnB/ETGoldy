@@ -1007,6 +1007,22 @@ void SetWolfSpawnWeapons(gclient_t *client)
 		{
 			AddWeaponToPlayer(client, WP_DYNAMITE, 0, 1, qfalse);
 			AddWeaponToPlayer(client, WP_PLIERS, 0, 1, qfalse);
+			AddWeaponToPlayer(client, WP_LANDMINE, GetAmmoTableData(WP_LANDMINE)->defaultStartingAmmo, GetAmmoTableData(WP_LANDMINE)->defaultStartingClip, qfalse);
+		}
+
+		if (pc == PC_COVERTOPS)
+		{
+			// See if we already have a satchel charge placed - NOTE: maybe we want to change this so the thing voids on death
+			if (G_FindSatchel(&g_entities[client->ps.clientNum]))
+			{
+				AddWeaponToPlayer(client, WP_SATCHEL, 0, 0, qfalse);        // Big Bang \o/
+				AddWeaponToPlayer(client, WP_SATCHEL_DET, 0, 1, qfalse);    // Big Red Button for tha Big Bang
+			}
+			else
+			{
+				AddWeaponToPlayer(client, WP_SATCHEL, 0, 1, qfalse);        // Big Bang \o/
+				AddWeaponToPlayer(client, WP_SATCHEL_DET, 0, 0, qfalse);    // Big Red Button for tha Big Bang
+			}
 		}
 
 		if (client->sess.sessionTeam == TEAM_AXIS)
