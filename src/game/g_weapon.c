@@ -3278,7 +3278,11 @@ float G_GetWeaponSpread(int weapon)
 	case WP_CARBINE:
 	case WP_KAR98:
 	case WP_K43:
+#ifdef FEATURE_GOLDY
+		return 100;
+#else 
 		return 250;
+#endif
 	case WP_GARAND_SCOPE:
 	case WP_K43_SCOPE:
 		return 700;
