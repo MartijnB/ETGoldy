@@ -525,7 +525,7 @@ void player_die(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int 
 		G_LogPrintf("Kill: %i %i %i: %s killed %s by %s\n", killer, self->s.number, meansOfDeath, killerName, self->client->pers.netname, obit);
 	}
 
-	// Drop 1 extra goldcrate when its not a suicide, teamkill or killed by wold
+	// Drop 1 extra gold bar when its not a suicide, teamkill or killed by wold
 	if (g_gametype.integer == GT_WOLF_GOLDY && attacker != self && !dieFromSameTeam && killer != ENTITYNUM_WORLD)
 	{
 		self->client->gold++;

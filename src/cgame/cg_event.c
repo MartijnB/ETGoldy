@@ -485,7 +485,7 @@ static void CG_ItemPickup(int itemNum)
 	int itemid = bg_itemlist[itemNum].giTag;
 	int wpbank_cur, wpbank_pickup;
 
-	if (bg_itemlist[itemNum].giType == IT_GOLDCRATE)
+	if (bg_itemlist[itemNum].giType == IT_GOLDBAR)
 	{
 		CG_CenterPrint(va("^7You've got now ^3%i ^7gold!", cg.snap->ps.persistant[PERS_GOLD]), SCREEN_HEIGHT - 88, BIGCHAR_WIDTH * 0.6, 1);
 	}

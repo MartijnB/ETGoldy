@@ -629,7 +629,7 @@ void G_DropLimboGold(gentity_t *ent)
 			launchvel[2] = 100;
 			VectorCopy(ent->r.currentOrigin, launchspot);
 
-			Weapon_Goldcrate_Ext(ent, launchspot, launchspot, launchvel);
+			Weapon_Goldbar_Ext(ent, launchspot, launchspot, launchvel);
 		}
 	}
 }

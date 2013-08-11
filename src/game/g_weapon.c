@@ -395,14 +395,14 @@ void Weapon_MagicAmmo_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t
 #endif
 }
 
-void Weapon_Goldcrate_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity)
+void Weapon_Goldbar_Ext(gentity_t *ent, vec3_t viewpos, vec3_t tosspos, vec3_t velocity)
 {
 	vec3_t    mins, maxs;
 	trace_t   tr;
 	gitem_t   *item;
 	gentity_t *ent2;
 	
-	item = BG_FindItemForClassName("item_goldcrate");
+	item = BG_FindItemForClassName("item_goldbar");
 
 	VectorSet(mins, -(ITEM_RADIUS + 8), -(ITEM_RADIUS + 8), 0);
 	VectorSet(maxs, (ITEM_RADIUS + 8), (ITEM_RADIUS + 8), 2 * (ITEM_RADIUS + 8));

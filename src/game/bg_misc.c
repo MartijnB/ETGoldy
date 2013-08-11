@@ -512,6 +512,26 @@ gitem_t bg_itemlist[] =
 		"",
 	},
 
+	{
+		"item_goldbar",	
+		"sound/misc/gold.wav",
+		{	
+			"models/powerups/treasure/goldbar.md3",
+			0, 
+			0
+		},
+		"",
+		NULL,
+		"Goldbar",
+		1,
+		IT_GOLDBAR,
+		0,
+		0,
+		0,
+		"",
+		"",
+	},
+
 	// ARMOR/HEALTH/STAMINA
 
 	/*QUAKED item_health_small (.3 .3 1) (-16 -16 -16) (16 16 16) suspended
@@ -2197,26 +2217,6 @@ gitem_t bg_itemlist[] =
 		"",                 // sounds
 	},
 
-	{
-		"item_goldcrate",	
-		"sound/misc/gold.wav",
-		{	
-			"models/mapobjects/goldbox_sd/goldbox.md3",
-			0, 
-			0
-		},
-		NULL,
-		NULL,
-		"Gold crate",
-		1,
-		IT_GOLDCRATE,
-		0,
-		0,
-		0,
-		"",
-		"",
-	},
-
 	// Wolf keys
 
 	/* QUAKED key_1 (1 1 0) (-8 -8 -8) (8 8 8) SUSPENDED SPIN - RESPAWN
@@ -2719,89 +2719,57 @@ qboolean BG_CanUseWeapon(int classNum, int teamNum, weapon_t weapon)
 		{
 			return qtrue;
 		}
-		else if (weapon == WP_MP40 || weapon == WP_KAR98)
+		else if (weapon == WP_KAR98)
 		{
-			return (teamNum == TEAM_AXIS);
+			return (teamNum == TEAM_AXIS) ? qtrue : qfalse;
 		}
-		else if (weapon == WP_THOMPSON || weapon == WP_CARBINE)
+		else if (weapon == WP_CARBINE)
 		{
-			return (teamNum == TEAM_ALLIES);
+			return (teamNum == TEAM_ALLIES) ? qtrue : qfalse;
 		}
 	case PC_FIELDOPS:
-		if (weapon == WP_STEN)
+		if (weapon == WP_KAR98)
 		{
-			return qtrue;
+			return (teamNum == TEAM_AXIS) ? qtrue : qfalse;
 		}
-		else if (weapon == WP_MP40)
+		else if (weapon == WP_CARBINE)
 		{
-			return (teamNum == TEAM_AXIS);
-		}
-		else if (weapon == WP_THOMPSON)
-		{
-			return (teamNum == TEAM_ALLIES);
+			return (teamNum == TEAM_ALLIES) ? qtrue : qfalse;
 		}
 		break;
 	case PC_SOLDIER:
-		if (weapon == WP_STEN
-		    || weapon == WP_PANZERFAUST
-		    || weapon == WP_FLAMETHROWER
-		    // FIXME: shouldn't this only be for cvt ops?
-		    || weapon == WP_FG42
-		    || weapon == WP_MOBILE_MG42
-		    || weapon == WP_MOBILE_MG42_SET
-		    || weapon == WP_MORTAR
-		    || weapon == WP_MORTAR_SET)
+		if (weapon == WP_KAR98)
 		{
-			return qtrue;
+			return (teamNum == TEAM_AXIS) ? qtrue : qfalse;
 		}
-		else if (weapon == WP_MP40)
+		else if (weapon == WP_CARBINE)
 		{
-			return (teamNum == TEAM_AXIS);
-		}
-		else if (weapon == WP_THOMPSON)
-		{
-			return (teamNum == TEAM_ALLIES);
+			return (teamNum == TEAM_ALLIES) ? qtrue : qfalse;
 		}
 		break;
-
 	case PC_MEDIC:
-		if (weapon == WP_MEDIC_SYRINGE || weapon == WP_MEDKIT)
+		if (weapon == WP_KAR98)
 		{
-			return qtrue;
+			return (teamNum == TEAM_AXIS) ? qtrue : qfalse;
 		}
-		else if (weapon == WP_MP40)
+		else if (weapon == WP_CARBINE)
 		{
-			return (teamNum == TEAM_AXIS);
-		}
-		else if (weapon == WP_THOMPSON)
-		{
-			return (teamNum == TEAM_ALLIES);
+			return (teamNum == TEAM_ALLIES) ? qtrue : qfalse;
 		}
 		break;
 	case PC_COVERTOPS:
-		if (weapon == WP_STEN
-		    || weapon == WP_SMOKE_BOMB
-		    || weapon == WP_SATCHEL
-		    || weapon == WP_AMMO
-		    || weapon == WP_FG42)
+		if (weapon == WP_KAR98)
 		{
-			return qtrue;
+			return (teamNum == TEAM_AXIS) ? qtrue : qfalse;
 		}
-		else if (weapon == WP_K43)
+		else if (weapon == WP_CARBINE)
 		{
-			return (teamNum == TEAM_AXIS);
-		}
-		else if (weapon == WP_GARAND)
-		{
-			return (teamNum == TEAM_ALLIES);
+			return (teamNum == TEAM_ALLIES) ? qtrue : qfalse;
 		}
 		break;
 	}
 
-	if (weapon == WP_NONE
-	    || weapon == WP_KNIFE
-	    || weapon == WP_LUGER
-	    || weapon == WP_COLT)
+	if (weapon == WP_NONE || weapon == WP_KNIFE)
 	{
 		return qtrue;
 	}
@@ -2911,7 +2879,7 @@ qboolean BG_CanItemBeGrabbed(const entityState_t *ent, const playerState_t *ps, 
 	case IT_KEY:
 		return qtrue;   // keys are always picked up
 
-	case IT_GOLDCRATE:
+	case IT_GOLDBAR:
 		return qtrue;
 
 	case IT_BAD:
