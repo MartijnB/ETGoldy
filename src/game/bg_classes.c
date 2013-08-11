@@ -42,11 +42,15 @@ bg_playerclass_t bg_allies_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_gun_blue.tga",
 		"ui/assets/mp_arrow_blue.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_CARBINE,
+#else
 			WP_THOMPSON,
 			WP_MOBILE_MG42,
 			WP_FLAMETHROWER,
 			WP_PANZERFAUST,
 			WP_MORTAR
+#endif
 		},
 	},
 
@@ -56,7 +60,11 @@ bg_playerclass_t bg_allies_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_health_blue.tga",
 		"ui/assets/mp_arrow_blue.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_CARBINE,
+#else
 			WP_THOMPSON,
+#endif
 		},
 	},
 
@@ -66,7 +74,9 @@ bg_playerclass_t bg_allies_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_wrench_blue.tga",
 		"ui/assets/mp_arrow_blue.tga",
 		{
+#ifndef FEATURE_GOLDY
 			WP_THOMPSON,
+#endif
 			WP_CARBINE,
 		},
 	},
@@ -77,7 +87,11 @@ bg_playerclass_t bg_allies_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_ammo_blue.tga",
 		"ui/assets/mp_arrow_blue.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_CARBINE,
+#else
 			WP_THOMPSON,
+#endif
 		},
 	},
 
@@ -87,9 +101,13 @@ bg_playerclass_t bg_allies_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_spy_blue.tga",
 		"ui/assets/mp_arrow_blue.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_CARBINE,
+#else
 			WP_STEN,
 			WP_FG42,
 			WP_GARAND,
+#endif
 		},
 	},
 };
@@ -102,11 +120,15 @@ bg_playerclass_t bg_axis_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_gun_red.tga",
 		"ui/assets/mp_arrow_red.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_KAR98,
+#else
 			WP_MP40,
 			WP_MOBILE_MG42,
 			WP_FLAMETHROWER,
 			WP_PANZERFAUST,
 			WP_MORTAR
+#endif
 		},
 	},
 
@@ -116,7 +138,11 @@ bg_playerclass_t bg_axis_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_health_red.tga",
 		"ui/assets/mp_arrow_red.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_KAR98,
+#else
 			WP_MP40,
+#endif
 		},
 	},
 
@@ -126,7 +152,9 @@ bg_playerclass_t bg_axis_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_wrench_red.tga",
 		"ui/assets/mp_arrow_red.tga",
 		{
+#ifndef FEATURE_GOLDY
 			WP_MP40,
+#endif
 			WP_KAR98,
 		},
 	},
@@ -137,7 +165,11 @@ bg_playerclass_t bg_axis_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_ammo_red.tga",
 		"ui/assets/mp_arrow_red.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_KAR98,
+#else
 			WP_MP40,
+#endif
 		},
 	},
 
@@ -147,9 +179,13 @@ bg_playerclass_t bg_axis_playerclasses[NUM_PLAYER_CLASSES] =
 		"ui/assets/mp_spy_red.tga",
 		"ui/assets/mp_arrow_red.tga",
 		{
+#ifdef FEATURE_GOLDY
+			WP_KAR98,
+#else
 			WP_STEN,
 			WP_FG42,
 			WP_K43,
+#endif
 		},
 	},
 };

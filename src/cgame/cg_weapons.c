@@ -3951,11 +3951,13 @@ void CG_FinishWeaponChange(int lastweap, int newweap)
 		}
 		break;
 	case WP_CARBINE:
+#ifndef FEATURE_GOLDY
 		if ((cg.pmext.silencedSideArm & 2) && lastweap != WP_M7)
 		{
 			newweap         = WP_M7;
 			cg.weaponSelect = newweap;
 		}
+#endif
 		break;
 	case WP_M7:
 		if (!(cg.pmext.silencedSideArm & 2) && lastweap != WP_CARBINE)
@@ -3965,11 +3967,13 @@ void CG_FinishWeaponChange(int lastweap, int newweap)
 		}
 		break;
 	case WP_KAR98:
+#ifndef FEATURE_GOLDY
 		if ((cg.pmext.silencedSideArm & 2) && lastweap != WP_GPG40)
 		{
 			newweap         = WP_GPG40;
 			cg.weaponSelect = newweap;
 		}
+#endif
 		break;
 	case WP_GPG40:
 		if (!(cg.pmext.silencedSideArm & 2) && lastweap != WP_KAR98)
@@ -4263,6 +4267,7 @@ void CG_NextWeap(qboolean switchBanks)
 			{
 				qboolean found = qfalse;
 
+#ifndef FEATURE_GOLDY
 				switch (num)
 				{
 				case WP_CARBINE:
@@ -4278,6 +4283,7 @@ void CG_NextWeap(qboolean switchBanks)
 					}
 					break;
 				}
+#endif
 
 				if (found)
 				{
@@ -4330,6 +4336,7 @@ void CG_NextWeap(qboolean switchBanks)
 			{
 				qboolean found = qfalse;
 
+#ifndef FEATURE_GOLDY
 				switch (num)
 				{
 				case WP_CARBINE:
@@ -4345,6 +4352,7 @@ void CG_NextWeap(qboolean switchBanks)
 					}
 					break;
 				}
+#endif
 
 				if (found)
 				{
@@ -4369,6 +4377,8 @@ void CG_NextWeap(qboolean switchBanks)
 				else
 				{
 					qboolean found = qfalse;
+
+#ifndef FEATURE_GOLDY
 					switch (num)
 					{
 					case WP_CARBINE:
@@ -4384,6 +4394,7 @@ void CG_NextWeap(qboolean switchBanks)
 						}
 						break;
 					}
+#endif
 
 					if (found)
 					{
@@ -4494,6 +4505,8 @@ void CG_PrevWeap(qboolean switchBanks)
 			else
 			{
 				qboolean found = qfalse;
+
+#ifndef FEATURE_GOLDY
 				switch (num)
 				{
 				case WP_CARBINE:
@@ -4509,6 +4522,7 @@ void CG_PrevWeap(qboolean switchBanks)
 					}
 					break;
 				}
+#endif
 
 				if (found)
 				{
@@ -4554,6 +4568,8 @@ void CG_PrevWeap(qboolean switchBanks)
 			else
 			{
 				qboolean found = qfalse;
+
+#ifndef FEATURE_GOLDY
 				switch (num)
 				{
 				case WP_CARBINE:
@@ -4569,6 +4585,7 @@ void CG_PrevWeap(qboolean switchBanks)
 					}
 					break;
 				}
+#endif
 
 				if (found)
 				{
@@ -4589,6 +4606,8 @@ void CG_PrevWeap(qboolean switchBanks)
 				else
 				{
 					qboolean found = qfalse;
+
+#ifndef FEATURE_GOLDY
 					switch (num)
 					{
 					case WP_CARBINE:
@@ -4604,6 +4623,7 @@ void CG_PrevWeap(qboolean switchBanks)
 						}
 						break;
 					}
+#endif
 
 					if (found)
 					{
@@ -4966,6 +4986,8 @@ void CG_WeaponBank_f(void)
 		else
 		{
 			qboolean found = qfalse;
+
+#ifndef FEATURE_GOLDY
 			switch (num)
 			{
 			case WP_CARBINE:
@@ -4981,6 +5003,7 @@ void CG_WeaponBank_f(void)
 				}
 				break;
 			}
+#endif
 
 			if (found)
 			{

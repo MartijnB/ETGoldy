@@ -1024,7 +1024,9 @@ void SetWolfSpawnWeapons(gclient_t *client)
 				case WP_KAR98:
 					if (AddWeaponToPlayer(client, WP_KAR98, GetAmmoTableData(WP_KAR98)->defaultStartingAmmo, GetAmmoTableData(WP_KAR98)->defaultStartingClip, qtrue))
 					{
+#ifndef FEATURE_GOLDY
 						AddWeaponToPlayer(client, WP_GPG40, GetAmmoTableData(WP_GPG40)->defaultStartingAmmo, GetAmmoTableData(WP_GPG40)->defaultStartingClip, qfalse);
+#endif
 					}
 					break;
 				default:
@@ -1042,7 +1044,9 @@ void SetWolfSpawnWeapons(gclient_t *client)
 				case WP_CARBINE:
 					if (AddWeaponToPlayer(client, WP_CARBINE, GetAmmoTableData(WP_CARBINE)->defaultStartingAmmo, GetAmmoTableData(WP_CARBINE)->defaultStartingClip, qtrue))
 					{
+#ifndef FEATURE_GOLDY
 						AddWeaponToPlayer(client, WP_M7, GetAmmoTableData(WP_M7)->defaultStartingAmmo, GetAmmoTableData(WP_M7)->defaultStartingClip, qfalse);
+#endif
 					}
 					break;
 				default:

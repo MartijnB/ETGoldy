@@ -2499,7 +2499,9 @@ void PM_BeginWeaponChange(int oldweapon, int newweapon, qboolean reload)        
 	case WP_KAR98:
 		if (newweapon != weapAlts[oldweapon])
 		{
+#ifndef FEATURE_GOLDY
 			PM_AddEvent(EV_CHANGE_WEAPON);
+#endif
 		}
 		break;
 	case WP_DYNAMITE:
@@ -2733,6 +2735,7 @@ static void PM_FinishWeaponChange(void)
 	case WP_COLT:
 		pm->pmext->silencedSideArm &= ~1;
 		break;
+#ifndef FEATURE_GOLDY
 	case WP_CARBINE:
 		pm->pmext->silencedSideArm &= ~2;
 		break;
@@ -2745,6 +2748,7 @@ static void PM_FinishWeaponChange(void)
 	case WP_GPG40:
 		pm->pmext->silencedSideArm |= 2;
 		break;
+#endif
 
 	default:
 		break;
